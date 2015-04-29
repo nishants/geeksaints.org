@@ -1,0 +1,90 @@
+/*******************************************************************************************
+Loader Bar
+*******************************************************************************************/
+.loader-bar{
+  width: 80px;
+  height: 30px;
+  padding-right: 20px;
+  margin: 0,0,0,0;
+  display: inline-block;
+}
+
+.loader-bar.first{
+  animation: loader1 2s infinite ease-in;
+  -webkit-animation: loader1 2s infinite ease-in;
+}
+
+.loader-bar.second{
+  animation: loader2 2s infinite ease-in;
+  -webkit-animation: loader2 2s infinite ease-in;
+}
+
+.loader-bar.third{
+  animation: loader3 2s infinite ease-in;
+  -webkit-animation: loader3 2s infinite ease-in;
+}
+/*R  		-> rgba(153, 0, 0, 1)*/
+/*G  		-> rgba(51, 153, 51,1)*/
+/*B  		-> rgba(0, 153, 255, 1)*/
+/*R.G  	-> rgba(153,0,0,0.3)*/
+/*G.B  	-> rgba(0,153,0, 0.3)*/
+/*B.R  	-> rgba(0,0,153, 0.3)*/
+
+
+/*sequence : R R.G G G.B B B.R*/
+@keyframes loader1 {
+  0%       {background-color: rgba(153, 0,   0, 1  );} /* R */
+  16.6%    {background-color: rgba(153, 0,   0, 0.3);}  /* R.G */
+  33.2%    {background-color: rgba(0,   153, 0, 1);} /* G */
+  49.8%    {background-color: rgba(0,   153, 0, 0.3);} /* G.B */
+  66.4%    {background-color: rgba(0, 0,153, 1);} /* B */
+  83.2%    {background-color: rgba(0,0,153, 0.3);} /* B.R */
+}
+/*sequence : G G.B B B.R R R.G */
+@keyframes loader2 {
+  0%       {background-color: rgba(0, 153, 0, 1);} /* G */
+  16.6%    {background-color: rgba(0,153,0, 0.3);} /* G.B */
+  33.2%    {background-color: rgba(0, 0, 153, 1);} /* B */
+  49.8%    {background-color: rgba(0,0,153, 0.3);} /* B.R */
+  66.4%    {background-color: rgba(153, 0, 0, 1);} /* R */
+  83.2%    {background-color:  rgba(153,0,0,0.3);}  /* R.G */
+}
+
+/*sequence : B B.R R R.G G G.B */
+@keyframes loader3 {
+  0%       {background-color: rgba(0, 0, 153, 1);} /* B */
+  16.6%    {background-color: rgba(0,0,153, 0.3);} /* B.R */
+  33.2%    {background-color: rgba(153, 0, 0, 1);} /* R */
+  49.8%    {background-color:  rgba(153,0,0,0.3);}  /* R.G */
+  66.4%     {background-color: rgba(0, 153, 0, 1);} /* G */
+  83.2%     {background-color: rgba(0,153,0, 0.3);} /* G.B */
+}
+
+/*sequence : R R.G G G.B B B.R*/
+@-webkit-keyframes loader1 {
+  0%       {background-color: rgba(153, 0,   0, 1  );} /* R */
+  16.6%    {background-color: rgba(153, 0,   0, 0.3);}  /* R.G */
+  33.2%    {background-color: rgba(0,   153, 0, 1);} /* G */
+  49.8%    {background-color: rgba(0,   153, 0, 0.3);} /* G.B */
+  66.4%    {background-color: rgba(0, 0,153, 1);} /* B */
+  83.2%    {background-color: rgba(0,0,153, 0.3);} /* B.R */
+}
+/*sequence : G G.B B B.R R R.G */
+@-webkit-keyframes loader2 {
+  0%       {background-color: rgba(0, 153, 0, 1);} /* G */
+  16.6%    {background-color: rgba(0,153,0, 0.3);} /* G.B */
+  33.2%    {background-color: rgba(0, 0, 153, 1);} /* B */
+  49.8%    {background-color: rgba(0,0,153, 0.3);} /* B.R */
+  66.4%    {background-color: rgba(153, 0, 0, 1);} /* R */
+  83.2%    {background-color:  rgba(153,0,0,0.3);}  /* R.G */
+}
+
+/*sequence : B B.R R R.G G G.B */
+@-webkit-keyframes loader3 {
+  0%       {background-color: rgba(0, 0, 153, 1);} /* B */
+  16.6%    {background-color: rgba(0,0,153, 0.3);} /* B.R */
+  33.2%    {background-color: rgba(153, 0, 0, 1);} /* R */
+  49.8%    {background-color:  rgba(153,0,0,0.3);}  /* R.G */
+  66.4%     {background-color: rgba(0, 153, 0, 1);} /* G */
+  83.2%     {background-color: rgba(0,153,0, 0.3);} /* G.B */
+}

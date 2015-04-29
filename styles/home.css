@@ -1,0 +1,30 @@
+.full-screen {
+  height: 100vh; /*Each section of the size of viewport.*/
+}
+.undo-href{
+  text-decoration: none;
+}
+
+.saviour-blue{
+  color: #3276b1;
+}
+
+.no-margin{
+  margin: 0;
+}
+
+.blackboard {
+  color: #f1f0f0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.img-background{
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: contain;
+  background-position: center center;
+}
+
+.centered-display{
+  text-align: center;
+}

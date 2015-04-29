@@ -1,0 +1,9 @@
+/*this css must only have style tmporarily, unless refactored
+into the css lib*/
+body{
+  max-width: 800px;
+}
+#home-page{
+  padding-top: 30%;
+  font-size: 32px;
+}
