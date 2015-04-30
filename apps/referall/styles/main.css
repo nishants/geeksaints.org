@@ -1,55 +1,45 @@
-.grey-text{
-  color: rgba(45, 45, 45, 0.71);
-}
+/* order -> undo > containers > backgrounds > buttons > elements*/
 
-.silver-bg{
-  background: #efefef;
-}
-
-.bottom-border{
-  border-bottom: 1px solid #e6e6e6;;
-}
-
-.tile{
-  display: inline-block;
-}
-
-.pull-left{
-  float: left;
-  height: 100%;
+/* **************|Undos|************** */
+.undo-href{
+  text-decoration: none;
 }
 
 .undo-button{
-  margin: 0;
-  padding: 0;
   background: transparent;
   border: none;
 }
 
-.hidden{
-  display: none;
+.no-margin{
+  margin: 0;
+}
+/* **************|Containers|************** */
+.row{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.saviour-blue-text{
+  color: #3276b1;
+}
+.grey-text{
+  color: rgba(45, 45, 45, 0.71);
 }
 
 .full-screen {
   min-height: 100vh; /*Each section of the size of viewport.*/
 }
 
-.saviour-blue-text{
-  color: #3276b1;
-}
-
 .centered-display{
   text-align: center;
 }
 
-.undo-href{
-  text-decoration: none;
+.bottom-separator{
+  border-bottom: 1px solid #E4DF80;;
 }
 
-.no-margin{
-  margin: 0;
-}
-
+/* **************|Backgrounds|************** */
 .blackboard {
   color: #f1f0f0;
   background-color: rgba(0, 0, 0, 0.4);
@@ -60,4 +50,27 @@
   background-attachment: fixed;
   background-size: contain;
   background-position: center center;
+}
+
+/* **************|Buttons|************** */
+.button-primary{
+  color: rgb(142, 188, 142);
+  background-color: #3276b1;
+}
+
+.button{
+  display: block;
+  height: 2.6em;
+  border-radius: 3px;
+  font-size: 100%;
+  min-width: 300px;
+  margin-bottom: 5px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* **************|Elements|************** */
+
+.hidden{
+  display: none !important;
 }

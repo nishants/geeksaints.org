@@ -1,0 +1,24 @@
+/*this css must only have style temporarily, unless refactored
+into the css lib*/
+
+body{
+  max-width: 800px;
+  background-color: #000000;
+}
+
+/*Coloring page for proto-typing*/
+#jobs-page{
+  background-color: #8ebc8e;
+}
+
+.job{
+  margin-bottom: 5px;
+}
+.row{
+  border-radius: 3px !important;
+}
+
+.jobs-pic{
+  max-height: 50px;
+  width: initial;
+}
