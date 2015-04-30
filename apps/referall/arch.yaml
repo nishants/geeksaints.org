@@ -1,0 +1,13 @@
+Touch analysis :
+  tried : click, touchstart, touchend and mousedown
+  click:        slow, sluggish
+  touchstart:   super sensitive(problem if screen is scrollable)
+  touchend:     more responsive than click, equally scroll unfreindly as touchstart
+  mousedown:    responsive(more than click), great with scroll.
+  browser:      all events work on Chrome and Firefox(ios and android).
+
+
+Testing:
+  Qunit: supports sync and async tests.
+    Qunit.test: "QUnit.test(name, testFunction)"
+    Qunit.asyncTest: "QUnit.asyncTest(name, testFunction)"

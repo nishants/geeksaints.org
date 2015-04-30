@@ -2,11 +2,11 @@
   'use strict';
 
   var init = function () {
+
   };
 
-  if(!window.geeksaints) window.geeksaints = {};
-  window.geeksaints.referall = {
-    init: init
-  };
-
+  var referall = {};
+  referall.state = {};
+  referall.render = init;
+  window.referall = referall
 }).call(this);
