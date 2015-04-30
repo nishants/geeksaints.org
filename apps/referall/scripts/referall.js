@@ -1,12 +1,12 @@
 (function() {
   'use strict';
 
-  var init = function () {
+  var render = function () {
 
   };
 
   var referall = {};
   referall.state = {};
-  referall.render = init;
+  referall.render = render;
   window.referall = referall
 }).call(this);

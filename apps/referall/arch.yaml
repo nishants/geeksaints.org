@@ -6,8 +6,29 @@ Touch analysis :
   mousedown:    responsive(more than click), great with scroll.
   browser:      all events work on Chrome and Firefox(ios and android).
 
-
 Testing:
   Qunit: supports sync and async tests.
     Qunit.test: "QUnit.test(name, testFunction)"
     Qunit.asyncTest: "QUnit.asyncTest(name, testFunction)"
+
+Routing:
+  OAuth2.0 : will redirect to pages with a state(or a parameter).
+  Solution: use a single url fragment wiht url sage chars to decide what to render on screen.
+  Format : param-name-1_param-value-1_param-name-2_param-value-2.
+
+Controller: alias Page
+  ResolvingViewData:
+    ViewResolvesData: data call paralled to view creation
+                    : view decides what to do if data fails(can callback controller if needed).
+
+
+ActivePages: extension of the idea of active records to DOM
+  HTML:     is a non relational data
+  common:   DOM elements have behaviours in common(show, hide, destroy)
+  elements: typical elements are container, form, input, image, text(span), multiline-text(p)
+            list(select boxes)
+
+Opinions:
+  isType   : we can litter html a little to map elements to activepages model and actions
+  ng-repeat: all repeated elements can be mapped to a type
+              with common fields for

@@ -1,7 +1,6 @@
 
 (function() {
   'use strict';
-  // Gets view name and params from router, and resolves view with params
   var resolve = function (params) {
 
   };
