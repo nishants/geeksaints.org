@@ -100,7 +100,24 @@
 
     </section>
     <script type="text/javascript">
-        $(document).ready(geeksaints.referall.init())
+        $(document).ready(geeksaints.referall.init());
+        $("#refer-job-1").click(function () {
+            alert("this is on click");
+        });
+
+        $("#refer-job-2").on({ 'touchstart' : function(){
+            alert("this is on touchstart");
+        } });
+
+        $("#refer-job-3").on({ 'touchend' : function(){
+            alert("this is on touchend");
+        } });
+
+        $("#refer-job-4").mousedown(function () {
+            alert("this is on mousedown");
+        });
+
+
     </script>
 </body>
 
