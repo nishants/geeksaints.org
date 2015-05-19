@@ -13,6 +13,12 @@
 .no-margin{
   margin: 0;
 }
+
+.undo-list{
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;;
+}
 /* **************|Containers|************** */
 .row{
   margin-left: auto;
@@ -73,4 +79,11 @@
 
 .hidden{
   display: none !important;
+}
+
+.pull-right{
+  float:  right;
+}
+.pull-left{
+  float:  left;
 }

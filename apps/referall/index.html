@@ -17,7 +17,7 @@
 </head>
 
 <body id='referall-center' >
-    <section id="jobs-page" class="centered-display full-screen" isCollection>
+    <section id="jobs-page" class="centered-display full-screen">
 
         <div id="job-1" class="job bottom-separator grey-text row">
             <img id="job-pic-1" class="jobs-pic row" src="images/samples/flipkart.png"/>
@@ -28,7 +28,7 @@
             </p>
             <button id="refer-job-1" class="refer-job undo-button button button-primary">refer</button>
         </div>
-        
+
         <div id="job-2" class="job bottom-separator  grey-text row">
             <img id="job-pic-2" class="jobs-pic row" src="images/samples/amazon.jpeg"/>
             <p id="job-heading-2" class="job-heading row">Product Manager, Pricing Platform </p>
@@ -38,7 +38,7 @@
             </p>
             <button id="refer-job-2" class="refer-job undo-button button button-primary">refer</button>
         </div>
-        
+
         <div id="job-3" class="job bottom-separator  grey-text row">
             <img id="job-pic-3" class="jobs-pic row" src="images/samples/gogo.jpeg"/>
             <p id="job-heading-3" class="job-heading row">Product Manager, Pricing Platform </p>
@@ -48,7 +48,7 @@
             </p>
             <button id="refer-job-3" class="refer-job undo-button button button-primary">refer</button>
         </div>
-        
+
         <div id="job-4" class="job bottom-separator  grey-text row">
             <img id="job-pic-4" class="jobs-pic row" src="images/samples/facebook.jpeg"/>
             <p id="job-heading-4" class="job-heading row">Product Manager, Pricing Platform </p>
@@ -67,7 +67,7 @@
             </p>
             <button id="refer-job-5" class="refer-job undo-button button button-primary">refer</button>
         </div>
-        
+
         <div id="job-6" class="job bottom-separator  grey-text row">
             <img id="job-pic-6" class="jobs-pic row" src="images/samples/amazon.jpeg"/>
             <p id="job-heading-6" class="job-heading row">Product Manager, Pricing Platform </p>
@@ -77,7 +77,7 @@
             </p>
             <button id="refer-job-6" class="refer-job undo-button button button-primary">refer</button>
         </div>
-        
+
         <div id="job-7" class="job bottom-separator  grey-text row">
             <img id="job-pic-7" class="jobs-pic row" src="images/samples/gogo.jpeg"/>
             <p id="job-heading-7" class="job-heading row">Product Manager, Pricing Platform </p>
@@ -87,7 +87,7 @@
             </p>
             <button id="refer-job-7" class="refer-job undo-button button button-primary">refer</button>
         </div>
-        
+
         <div id="job-8" class="job bottom-separator  grey-text row">
             <img id="job-pic-8" class="jobs-pic row" src="images/samples/facebook.jpeg"/>
             <p id="job-heading-8" class="job-heading row">Product Manager, Pricing Platform </p>
@@ -99,22 +99,70 @@
         </div>
 
     </section>
+
+    <section id="send-referrals-page" class="centered-display full-screen">
+
+        <div class="contact ">
+            <img alt="Priyanshu Goel" 
+                 src="https://media.licdn.com/mpr/mprx/0__by8vxYgBXbZz5O1__gxvjV0v5tBz_a1Tie0vjpGEiQboFJPfTuuRge2Ue-enkf0CkYYssa8ILqS"
+                 class="contact-image"/>
+
+            <div class="contact-info">
+                <div class="name">Priyanshu Goel</div>
+                <div class="title">Chief Manager</div>
+                <div class="org">Technology at Times Internet</div>
+                <div class="loc">Noida Area, India</div>
+            </div>
+        </div>
+
+        <div class="contact ">
+            <img alt="Priyanshu Goel" 
+                 src="https://media.licdn.com/mpr/mprx/0__by8vxYgBXbZz5O1__gxvjV0v5tBz_a1Tie0vjpGEiQboFJPfTuuRge2Ue-enkf0CkYYssa8ILqS"
+                 class="contact-image"/>
+
+            <div class="contact-info">
+                <div class="name">Priyanshu Goel</div>
+                <div class="title">Chief Manager</div>
+                <div class="org">Technology at Times Internet</div>
+                <div class="loc">Noida Area, India</div>
+            </div>
+        </div>
+
+        <div class="contact">
+            <div class="pull-left">
+                <img alt="Priyanshu Goel"
+                    src="https://media.licdn.com/mpr/mprx/0__by8vxYgBXbZz5O1__gxvjV0v5tBz_a1Tie0vjpGEiQboFJPfTuuRge2Ue-enkf0CkYYssa8ILqS"
+                    class="contact-image pull-right"/>
+            </div>
+
+            <div class="contact-info pull-right">
+                <div class="name">Priyanshu Goel</div>
+                <div class="title">Chief Manager</div>
+                <div class="org">Technology at Times Internet</div>
+                <div class="loc">Noida Area, India</div>
+            </div>
+        </div>
+
+        <div class="contact">
+            <img alt="Priyanshu Goel" 
+                 src="https://media.licdn.com/mpr/mprx/0__by8vxYgBXbZz5O1__gxvjV0v5tBz_a1Tie0vjpGEiQboFJPfTuuRge2Ue-enkf0CkYYssa8ILqS"
+                 class="contact-image"/>
+
+            <div class="contact-info">
+                <div class="name">Priyanshu Goel</div>
+                <div class="title">Chief Manager</div>
+                <div class="org">Technology at Times Internet</div>
+                <div class="loc">Noida Area, India</div>
+            </div>
+        </div>
+    </section>
+
     <script type="text/javascript">
-        $(document).ready(geeksaints.referall.init());
-        $("#refer-job-1").click(function () {
-            alert("this is on click");
-        });
-
-        $("#refer-job-2").on({ 'touchstart' : function(){
-            alert("this is on touchstart");
-        } });
-
-        $("#refer-job-3").on({ 'touchend' : function(){
-            alert("this is on touchend");
-        } });
-
-        $("#refer-job-4").mousedown(function () {
-            alert("this is on mousedown");
+        $(document).ready(function(){
+            $(".refer-job").click(function(a,b) {
+                var jobId = a.target.id.split("-")[2];
+                referall.refer(jobId);
+            });
         });
     </script>
 </body>

@@ -6,6 +6,10 @@ body{
   background-color: #000000;
 }
 
+.row{
+  border-radius: 3px !important;
+}
+
 /*Coloring page for proto-typing*/
 #jobs-page{
   background-color: #8ebc8e;
@@ -14,11 +18,28 @@ body{
 .job{
   margin-bottom: 5px;
 }
-.row{
-  border-radius: 3px !important;
-}
 
 .jobs-pic{
   max-height: 50px;
   width: initial;
+}
+
+#send-referrals-page{
+  background-color: #5990bc;
+}
+
+.contact-image{
+  display: inline-block;
+}
+
+.contact-info{
+  display: inline-block;
+  float: right;
+  width: 70%;
+}
+
+.contact{
+  display: inline-block; /*else div collapses on chrome*/
+  width: 100%;
+  background-color: #8ebc8e;
 }
