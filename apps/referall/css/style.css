@@ -1,0 +1,9 @@
+/*this css must only have style temporarily, unless refactored
+into the css lib*/
+
+body{
+}
+
+.full-height{
+  min-height: 100vh;
+}
