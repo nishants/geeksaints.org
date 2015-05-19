@@ -21,9 +21,9 @@
       job = {
         url: "abc.com",
         employer: "AB Corp",
-        heading: "Fundoo Programmer | Free Stay",
+        role: "Fundoo Programmer | Free Stay",
         location: "Bangalore",
-        date: "May 13"
+        time: "1432069067417"
       };
 
   QUnit.module("JobsCard", {
@@ -40,10 +40,10 @@
 
     var createdJob = jobCardsIn(target()).first();
     setTimeout(function(){
-      assert.ok(dateIn(createdJob), "May 13");
-      assert.ok(employerIn(createdJob), "AB Corp");
-      assert.ok(headingIn(createdJob), "Fundoo Programmer | Free Stay");
-      assert.ok(locationIn(createdJob), "Bangalore");
+      assert.equal(dateIn(createdJob), "May 20", "format date to MMM/D");
+      assert.equal(employerIn(createdJob), "AB Corp", "render employer name");
+      assert.equal(headingIn(createdJob), "Fundoo Programmer | Free Stay", "reder role name");
+      assert.equal(locationIn(createdJob), "Bangalore", "render location name");
       //assert.ok(urlIn(createdJob), "abc.com");
 
       done();
