@@ -6,29 +6,43 @@
     <title>Referall Center</title>
 
     <meta name="description" content="Make easy money by referring friends on linkedin.">
-    <meta name="keywords" content="freelancer,online,money,hiring,work form home,workfromhome,web,design,html,css,html5,development">
+    <meta name="keywords"
+          content="freelancer,online,money,hiring,work form home,workfromhome,web,design,html,css,html5,development">
     <meta name="viewport" content="width=device-width">
 
     <link rel="stylesheet" href="css/style.css">
 
     <script src="js/lib/jquery.js"></script>
     <script src="js/referall.js"></script>
+    <script src="js/jobs-card.js"></script>
+    <script src="js/jobs-board.js"></script>
 </head>
 
-<body id='referall-center' >
-    <div id="jobs-board">
-        <div id="sample-job-card" class="job-card">
-        </div>
+<body id='referall-center'>
+<div id="jobs-board">
+    <div id="job-card-prototype" class="job-card">
+        <div class='job-url'></div>
+        <div class='job-employer'></div>
+        <div class='job-heading'></div>
+        <div class='job-location'></div>
+        <div class='job-date'></div>
     </div>
+</div>
 
 
-    <script type="text/javascript">
-        var init= function(){
+<script type="text/javascript">
+    var
+            jobsBoard = function () {
+                return $("#jobs-board");
+            },
+            init = function () {
+                $.get("data/jobs.json", function (response) {
+                    new referall.JobsBoard(jobsBoard(), response.data);
+                })
+            };
 
-        };
-
-        $(document).ready(init);
-    </script>
+    $(document).ready(init);
+</script>
 </body>
 
 </html>

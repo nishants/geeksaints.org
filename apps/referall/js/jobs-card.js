@@ -13,18 +13,19 @@
             setDate = function (date) {
               ($e).find(".job-date").html(date);
             },
-            setUrl = function (date) {
-              ($e).find(".job-date").html(date);
+            setUrl = function (url) {
+              ($e).find(".job-date").html(url);
             },
-            setHeading = function (date) {
-              ($e).find(".job-heading").html(date);
+            setHeading = function (head) {
+              ($e).find(".job-heading").html(head);
             },
-            setLocation = function (date) {
-              ($e).find(".job-location").html(date);
+            setLocation = function (location) {
+              ($e).find(".job-location").html(location);
             },
-            setEmployer = function (date) {
-              ($e).find(".job-employer").html(date);
+            setEmployer = function (emp) {
+              ($e).find(".job-employer").html(emp);
             };
+
         setDate(job.date);
         setEmployer(job.employer);
         setHeading(job.heading);
