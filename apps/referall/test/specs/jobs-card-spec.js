@@ -36,19 +36,22 @@
   QUnit.test("Should create and append jobs card", function (assert) {
     var jobCard = new referall.JobCard(job),
         done = assert.async();
-    jobCard.appendTo(target());
 
+    jobCard.appendTo(target());
     var createdJob = jobCardsIn(target()).first();
+
     setTimeout(function(){
       assert.equal(dateIn(createdJob), "May 20", "format date to MMM/D");
       assert.equal(employerIn(createdJob), "AB Corp", "render employer name");
       assert.equal(headingIn(createdJob), "Fundoo Programmer | Free Stay", "reder role name");
       assert.equal(locationIn(createdJob), "Bangalore", "render location name");
       //assert.ok(urlIn(createdJob), "abc.com");
-
+      jobCard.delete();
+      assert.equal(jobCardsIn(target()).length, 0, "should delete self");
       done();
     });
-    assert.expect(4);
+
+    assert.expect(5);
   });
 
 }).call(this);

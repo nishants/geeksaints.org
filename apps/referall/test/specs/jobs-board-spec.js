@@ -26,16 +26,15 @@
   QUnit.module("JobsBoard", {
     setup: function () {
       $("#qunit-fixture").append(pageHtml);
-      referall.JobCard = MockedJobsCard;
     }
   });
 
   QUnit.test("Should Display Page", function (assert) {
     page().hide();
-    new referall.JobsBoard(page(), jobs);
+    new referall.JobsBoard(page(), jobs, MockedJobsCard);
 
     assert.ok(page().is(":visible"), "Should display page");
-    assert.deepEqual(jobsCreated, jobs)
+    assert.deepEqual(jobsCreated, jobs, 'Should create a JobsCard for each jobs and append to document')
   });
 
 }).call(this);

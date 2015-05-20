@@ -2,10 +2,10 @@
   "use-strict"
 
   var
-      JobsBoard = function ($page, jobs) {
+      JobsBoard = function ($page, jobs, JobCard) {
         var createCardsFor = function (jobs) {
           jobs.forEach(function(job){
-            var jobsCard = new referall.JobCard(job);
+            var jobsCard = new JobCard(job);
             jobsCard.appendTo($page);
           })
         };
