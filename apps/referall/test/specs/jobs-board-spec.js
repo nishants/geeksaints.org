@@ -67,14 +67,21 @@
 
   QUnit.test("Should filter jobs by location, employer or role", function (assert) {
     var delhiJobs = [delhiTesterAmazon, delhiTesterFlipkart],
+        mumbaiJobs = [mumbaiDeveloperFlipkart],
         delhiJobsFiltered = assert.async(),
         mumbaiJobsFiltered = assert.async();
 
     filterByLocation("DeLhI").then(function () {
-      assert.deepEqual(jobsCreated, delhiJobs , 'Should filter by location, ignoring case')
+      assert.deepEqual(jobsCreated, delhiJobs , 'Should filter by location, ignoring case');
       delhiJobsFiltered();
+
+      filterByLocation("mumBAi").then(function () {
+        assert.deepEqual(jobsCreated, mumbaiJobs , 'Should filter by location recursively');
+        mumbaiJobsFiltered();
+      });
     });
-    assert.expect(1);
+
+    assert.expect(2);
   });
 
 }).call(this);

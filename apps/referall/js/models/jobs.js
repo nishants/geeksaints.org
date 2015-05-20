@@ -12,9 +12,13 @@
   };
 
   var Jobs = function(jobs){
-    this.list = function(){return jobs;};
+    var filtered = jobs;
+
+    this.list = function(){return filtered;};
+
     this.filterByLocation = function(location){
-      return new Jobs(filterByLocation(jobs, location));
+      filtered = filterByLocation(jobs, location);
+      return this;
     };
   };
 
