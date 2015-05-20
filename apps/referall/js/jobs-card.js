@@ -43,7 +43,7 @@
         setLocation(job.location);
         setUrl(job.url);
 
-        this.delete = function () {
+        this.remove = function () {
           $e.remove();
         };
 

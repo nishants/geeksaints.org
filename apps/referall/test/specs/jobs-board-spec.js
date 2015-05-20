@@ -6,25 +6,19 @@
       delhiTesterAmazon = {url: "2", location: "Delhi", role: "Tester", emlpoyer: "amazon"},
       bangaloreManagerSnapdeal = {url: "3", location: "Bangalaore", role: "Manager", emlpoyer: "snapdeal"},
       delhiTesterFlipkart = {url: "4", location: "Delhi", role: "Tester", emlpoyer: "flipkart"},
-
-      jobs = [
-        mumbaiDeveloperFlipkart,delhiTesterAmazon, bangaloreManagerSnapdeal, delhiTesterFlipkart
-      ],
-
+      jobs ,
       jobsCreated = [],
+      page = function(){return $("#jobs-board");},
 
       MockedJobsCard = function (job) {
         this.appendTo = function($e){
-          this.appendedTo = $e;
-          jobsCreated.push(job);
+          if($e.id == page().id)jobsCreated.push(job);
         };
 
         this.remove = function(){
           jobsCreated.splice(jobsCreated.indexOf(job), 1);
         };
       },
-      page = function(){return $("#jobs-board");},
-      jobCards = function(){return $(".job-card:visible");},
 
       filterByLocation = function(location){
         var input = $("#filter-by-location");
@@ -48,22 +42,32 @@
     setup: function () {
       $("#qunit-fixture").append(pageHtml);
       page().hide();
-      jobsCreated = []
+      jobsCreated = [];
+      jobs = new referall.Jobs([
+            mumbaiDeveloperFlipkart,
+            delhiTesterAmazon,
+            bangaloreManagerSnapdeal,
+            delhiTesterFlipkart]
+      );
       new referall.JobsBoard(page(), jobs, MockedJobsCard);
     }
   });
 
   QUnit.test("Should Display Page", function (assert) {
     assert.ok(page().is(":visible"), "Should display page");
-    assert.deepEqual(jobsCreated, jobs, 'Should create a JobsCard for each jobs and append to document')
+    assert.deepEqual(jobsCreated, jobs.list(), 'Should create a JobsCard for each jobs and append to document')
   });
 
   QUnit.test("Should filter jobs by location, employer or role", function (assert) {
-    var delhiJobs = [delhiTesterAmazon, delhiTesterFlipkart];
+    var delhiJobs = [delhiTesterAmazon, delhiTesterFlipkart],
+        done = assert.async();
 
     filterByLocation("Delhi");
 
-    assert.deepEqual(jobsCreated, delhiJobs , 'Should filter by location')
+    setTimeout(function(){
+      assert.deepEqual(jobsCreated, delhiJobs , 'Should filter by location')
+      done();
+    });
   });
 
 }).call(this);

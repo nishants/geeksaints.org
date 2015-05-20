@@ -46,7 +46,7 @@
       assert.equal(headingIn(createdJob), "Fundoo Programmer | Free Stay", "reder role name");
       assert.equal(locationIn(createdJob), "Bangalore", "render location name");
       //assert.ok(urlIn(createdJob), "abc.com");
-      jobCard.delete();
+      jobCard.remove();
       assert.equal(jobCardsIn(target()).length, 0, "should delete self");
       done();
     });
