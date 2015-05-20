@@ -4,7 +4,7 @@
   var filterByLocation = function (jobs, location) {
     var filtered = [];
     jobs.forEach(function(job){
-      if(job.location == location){
+      if(job.location.toLowerCase() == location.toLowerCase()){
         filtered.push(job);
       }
     });

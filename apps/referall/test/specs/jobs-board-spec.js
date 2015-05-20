@@ -20,10 +20,17 @@
         };
       },
 
-      filterByLocation = function(location){
+      asyncCallback = function (callback) {
+        setTimeout(function(){
+          callback();
+        })
+      },
+
+      filterByLocation = function (location) {
         var input = $("#filter-by-location");
         input.val(location);
         input.trigger("blur");
+        return {then: asyncCallback}
       },
 
       pageHtml =
@@ -60,14 +67,14 @@
 
   QUnit.test("Should filter jobs by location, employer or role", function (assert) {
     var delhiJobs = [delhiTesterAmazon, delhiTesterFlipkart],
-        done = assert.async();
+        delhiJobsFiltered = assert.async(),
+        mumbaiJobsFiltered = assert.async();
 
-    filterByLocation("Delhi");
-
-    setTimeout(function(){
-      assert.deepEqual(jobsCreated, delhiJobs , 'Should filter by location')
-      done();
+    filterByLocation("DeLhI").then(function () {
+      assert.deepEqual(jobsCreated, delhiJobs , 'Should filter by location, ignoring case')
+      delhiJobsFiltered();
     });
+    assert.expect(1);
   });
 
 }).call(this);
