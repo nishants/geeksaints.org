@@ -19,10 +19,15 @@
             },
 
             onFilterByLocation = function () {
+              var location = getLocation().val();
+              if(!location || location.trim() ==  ""){
+                // So it sticks to current filter.
+                return this;
+              }
               removeCards();
               return new JobsBoard(
                   $page,
-                  jobs.filterByLocation(getLocation().val()),
+                  jobs.filterByLocation(location),
                   JobCard);
             };
 

@@ -65,6 +65,21 @@
     assert.deepEqual(jobsCreated, jobs.list(), 'Should create a JobsCard for each jobs and append to document')
   });
 
+  QUnit.test("Should not filter if no input is provided", function (assert) {
+    var done = assert.async();
+
+    filterByLocation("").then(function () {
+      assert.deepEqual(jobsCreated, [
+        mumbaiDeveloperFlipkart,
+        delhiTesterAmazon,
+        bangaloreManagerSnapdeal,
+        delhiTesterFlipkart] , 'ignore no input');
+      done();
+    });
+
+    assert.expect(1);
+  });
+
   QUnit.test("Should filter jobs by location, employer or role", function (assert) {
     var delhiJobs = [delhiTesterAmazon, delhiTesterFlipkart],
         mumbaiJobs = [mumbaiDeveloperFlipkart],
