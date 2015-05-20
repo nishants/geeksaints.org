@@ -72,11 +72,11 @@
         mumbaiJobsFiltered = assert.async();
 
     filterByLocation("DeLhI").then(function () {
-      assert.deepEqual(jobsCreated, delhiJobs , 'Should filter by location, ignoring case');
+      assert.deepEqual(jobsCreated, delhiJobs , 'filter by location, ignoring case');
       delhiJobsFiltered();
 
       filterByLocation("mumBAi").then(function () {
-        assert.deepEqual(jobsCreated, mumbaiJobs , 'Should filter by location recursively');
+        assert.deepEqual(jobsCreated, mumbaiJobs , 'filter by location recursively');
         mumbaiJobsFiltered();
       });
     });
