@@ -63,9 +63,9 @@
       pageHtml =
           '<div id="jobs-board">                                      '+
           '   <div id="filter-jobs" class="menu">                     '+
-          '       <input type="text" id="filter-by-location"></div>   '+
-          '       <input type="text" id="filter-by-employer"></div>   '+
-          '       <input type="text" id="filter-by-role"></div>       '+
+          '       <input type="text" id="filter-by-location"/>        '+
+          '       <input type="text" id="filter-by-employer"/>        '+
+          '       <input type="text" id="filter-by-role"/>            '+
           '   </div>                                                  '+
           '   <div id="jobs-list" class="jobs-list">                  '+
           '   </div>                                                  '+

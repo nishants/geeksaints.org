@@ -3,6 +3,8 @@
 
   var getLocation = function(){return $("#filter-by-location");},
       getEmployer = function(){return $("#filter-by-employer");},
+      $jobsListIn = function($page){return $page.find("#jobs-list");},
+
       cards = [], //TODO fails if cards is declared inside constructor
       JobsBoard = function ($page, jobs, JobCard) {
         var
@@ -10,7 +12,7 @@
               jobs.list().forEach(function (job) {
                 var jobsCard = new JobCard(job);
                 cards.push(jobsCard);
-                jobsCard.appendTo($page);
+                jobsCard.appendTo($jobsListIn($page));
               })
             },
             removeCards = function(){
