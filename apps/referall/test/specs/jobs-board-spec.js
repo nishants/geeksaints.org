@@ -7,13 +7,35 @@
       bangaloreManagerSnapdeal = {url: "3", location: "Bangalaore", role: "Manager", employer: "snapdeal"},
       delhiTesterFlipkart = {url: "4", location: "Delhi", role: "Tester", employer: "flipkart"},
       jobs ,
-      jobsCreated = [],
+
+      allJobs = [
+        mumbaiDeveloperFlipkart,
+        delhiTesterAmazon,
+        bangaloreManagerSnapdeal,
+        delhiTesterFlipkart],
+
+      delhiJobs = [delhiTesterAmazon, delhiTesterFlipkart],
+      mumbaiJobs = [mumbaiDeveloperFlipkart],
+
+      developerJobs = [mumbaiDeveloperFlipkart],
+      testerJobs = [delhiTesterAmazon, delhiTesterFlipkart],
+      managerJobs = [bangaloreManagerSnapdeal],
+
+      flipkartJobs = [mumbaiDeveloperFlipkart, delhiTesterFlipkart],
+      amazonJobs = [delhiTesterAmazon],
+      snapdealJobs = [bangaloreManagerSnapdeal],
+
       page = function(){return $("#jobs-board");},
 
       asyncCallback = function (callback) {
         setTimeout(function(){
           callback();
         })
+      },
+
+      clearFilterByRole = function () {
+        $("#filter-by-role").next().trigger("onmousdown");
+        return {then: asyncCallback}
       },
 
       filterByLocation = function (location) {
@@ -109,16 +131,10 @@
   });
 
   QUnit.test("Should not filter if no input is provided", function (assert) {
-    var
-        doneByLocation = assert.async(),
+    var doneByLocation = assert.async(),
         doneByRole = assert.async(),
-        doneByEmpoyer = assert.async(),
+        doneByEmpoyer = assert.async();
 
-        allJobs = [
-          mumbaiDeveloperFlipkart,
-          delhiTesterAmazon,
-          bangaloreManagerSnapdeal,
-          delhiTesterFlipkart];
 
     filterByLocation("").then(function () {
       assert.deepEqual(jobsDisplayed(), allJobs, 'ignore no input for location');
@@ -139,9 +155,7 @@
   });
 
   QUnit.test("Should filter jobs by location", function (assert) {
-    var delhiJobs = [delhiTesterAmazon, delhiTesterFlipkart],
-        mumbaiJobs = [mumbaiDeveloperFlipkart],
-        delhiJobsFiltered = assert.async(),
+    var delhiJobsFiltered = assert.async(),
         mumbaiJobsFiltered = assert.async();
 
     filterByLocation("DeLhI").then(function () {
@@ -158,11 +172,7 @@
   });
 
   QUnit.test("Should filter jobs by employer", function (assert) {
-    var flipkartJobs = [mumbaiDeveloperFlipkart, delhiTesterFlipkart],
-        amazonJobs = [delhiTesterAmazon],
-        snapdealJobs = [bangaloreManagerSnapdeal],
-
-        flipkartJobsFiltered = assert.async(),
+    var flipkartJobsFiltered = assert.async(),
         amazonJobsFiltered = assert.async(),
         snapdealJobsFiltered = assert.async();
 
@@ -173,7 +183,7 @@
       filterByEmployer("aMaZon").then(function () {
         assert.deepEqual(jobsDisplayed(), amazonJobs , 'filter by employer recursively');
         amazonJobsFiltered();
-        
+
         filterByEmployer("snapdeal").then(function () {
           assert.deepEqual(jobsDisplayed(), snapdealJobs , 'filter by employer recursively');
           snapdealJobsFiltered();
@@ -182,14 +192,10 @@
     });
 
     assert.expect(3);
-  })  
-  
-  QUnit.test("Should filter jobs by role", function (assert) {
-    var developerJobs = [mumbaiDeveloperFlipkart],
-        testerJobs = [delhiTesterAmazon, delhiTesterFlipkart],
-        managerJobs = [bangaloreManagerSnapdeal],
+  })
 
-        developerJobsFiltered = assert.async(),
+  QUnit.test("Should filter jobs by role", function (assert) {
+    var developerJobsFiltered = assert.async(),
         testerJobsFiltered = assert.async(),
         managerJobsFiltered = assert.async();
 
@@ -200,7 +206,7 @@
       filterByRole("tEsteR").then(function () {
         assert.deepEqual(jobsDisplayed(), testerJobs , 'filter by role recursively');
         testerJobsFiltered();
-        
+
         filterByRole("ManAger").then(function () {
           assert.deepEqual(jobsDisplayed(), managerJobs , 'filter by role recursively');
           managerJobsFiltered();
@@ -209,6 +215,33 @@
     });
 
     assert.expect(3);
+  });
+
+  QUnit.test("Should clear filters", function (assert) {
+    var
+        doneByLocation = assert.async(),
+        doneByRole = assert.async(),
+        doneByEmployer = assert.async();
+
+    filterByLocation("delhi").then(function () {
+      doneByLocation();
+
+      filterByEmployer("flipkart").then(function () {
+        doneByEmployer();
+
+        filterByRole("developer").then(function () {
+          assert.deepEqual(jobsDisplayed(), [], 'should display nothing if no job matches all criterion');
+
+          clearFilterByRole("developer").then(function () {
+            assert.deepEqual(jobsDisplayed(), delhiJobs , 'should display nothing if no job matches all criterion');
+            doneByRole();
+
+          });
+        });
+      });
+    });
+
+    assert.expect(2);
   });
 
 }).call(this);
