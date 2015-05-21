@@ -14,6 +14,15 @@
         return $page.find("#jobs-list");
       },
 
+      textIn = function (input) {
+        return $(input).val()
+      },
+      renderingNeededFor = function (filter) {
+        return filter.location ||
+                filter.role ||
+                filter.employer;
+      },
+
       cards = [], //TODO fails if cards is declared inside constructor
       JobsBoard = function ($page, jobs, JobCard) {
         var
@@ -31,16 +40,11 @@
               cards = [];
             },
 
-            onFilterByLocation = function () {
-              var location = getLocation().val();
-              if (!location || location.trim() == "") {
-                return this;
+            filterJobsBy = function (filter) {
+              if (renderingNeededFor(filter)) {
+                removeCards();
+                new JobsBoard($page, jobs.selectBy(filter), JobCard);
               }
-              removeCards();
-              return new JobsBoard(
-                  $page,
-                  jobs.filterByLocation(location),
-                  JobCard);
             },
 
             onFilterByEmployer = function () {
@@ -68,7 +72,12 @@
             };
 
         createCardsFor(jobs);
-        getLocation().on("blur", onFilterByLocation);
+
+        $("#filter-by-location").on("blur", function(){
+          filterJobsBy({location: textIn(this)});
+          return false;
+        });
+
         getEmployer().on("blur", onFilterByEmployer);
         getRole().on("blur", onFilterByRole);
         $page.show();

@@ -1,16 +1,11 @@
 (function () {
   "use-strict"
 
-  var filterByLocation = function (jobs, location) {
-        var filtered = [];
-        jobs.forEach(function (job) {
-          if (job.location.toLowerCase() == location.toLowerCase()) {
-            filtered.push(job);
-          }
-        });
-        return filtered;
-      },
-      filterByEmployer = function (jobs, employer) {
+  var
+        equals = function (str1, str2) {
+          return str1.toLowerCase() == str2.toLowerCase();
+        }
+        filterByEmployer = function (jobs, employer) {
         var filtered = [];
         jobs.forEach(function (job) {
           if (job.employer.toLowerCase() == employer.toLowerCase()) {
@@ -36,8 +31,17 @@
       return filtered;
     };
 
-    this.filterByLocation = function (location) {
-      filtered = filterByLocation(jobs, location);
+    this.selectBy = function (filter) {
+      filtered = [];
+      jobs.forEach(function (job) {
+        var matches =
+            (!filter.location || equals(job.location, filter.location)) &&
+            (!filter.employer || equals(job.employer, filter.employer)) &&
+            (!filter.role     || equals(job.role, filter.role));
+        if (matches) {
+          filtered.push(job);
+        }
+      });
       return this;
     };
 
