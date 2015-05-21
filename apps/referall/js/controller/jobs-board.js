@@ -63,6 +63,15 @@
         });
       },
 
+      $locationsList = function(){return $("#locations-options")},
+
+      setOptions = function (options, $list) {
+        $list.find("options").remove();
+        options.forEach(function(option){
+          $list.append('<option value="<value>">'.replace('<value>', option));
+        })
+      },
+
       JobsBoard = function ($page, jobs) {
         JobCard = referall.JobCard;
         var
@@ -75,6 +84,8 @@
             };
 
         render($page, cards);
+
+        setOptions(jobs.currentLocations(), $locationsList());
 
         $locationFilter().on("blur", filterJobs);
         $employerFilter().on("blur", filterJobs);

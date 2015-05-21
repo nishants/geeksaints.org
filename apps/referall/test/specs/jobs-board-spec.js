@@ -4,7 +4,7 @@
   var
       mumbaiDeveloperFlipkart = {url: "1", location: "Mumbai", role: "Developer", employer: "flipkart"},
       delhiTesterAmazon = {url: "2", location: "Delhi", role: "Tester", employer: "amazon"},
-      bangaloreManagerSnapdeal = {url: "3", location: "Bangalaore", role: "Manager", employer: "snapdeal"},
+      bangaloreManagerSnapdeal = {url: "3", location: "Bangalore", role: "Manager", employer: "snapdeal"},
       delhiTesterFlipkart = {url: "4", location: "Delhi", role: "Tester", employer: "flipkart"},
       jobs ,
 
@@ -90,6 +90,16 @@
         return jobs;
       },
 
+      locationOptions = function(){
+        var list = [],
+            options = $("#locations-options").find("option");
+
+        for(var i=0; i< options.length; i++){
+          list.push($(options[i]).attr("value"));
+        }
+        return list;
+      },
+
       pageHtml =
           '<div id="jobs-board">                                      '+
           '   <div id="filter-jobs" class="menu">                     '+
@@ -117,13 +127,18 @@
           "   <div class='job-heading'></div>"+
           "   <div class='job-location'></div>"+
           "   <div class='job-date'></div>"+
-          "</div>"
-  ;
+          "</div>",
+
+      dataListsHtml = 
+          '<datalist id="locations-options"></datalist>' +
+          '<datalist id="employers-options"></datalist>' +
+          '<datalist id="roles-options">    </datalist>';
 
   QUnit.module("JobsBoard", {
     setup: function () {
       $("#qunit-fixture").append(pageHtml);
       $("#qunit-fixture").append(jobCardPrototype);
+      $("#qunit-fixture").append(dataListsHtml);
       page().hide();
       jobs = new referall.JobsView([
             mumbaiDeveloperFlipkart,
@@ -236,12 +251,15 @@
     filterByLocation("delhi").then(function () {
       filterByEmployer("flipkart").then(function () {
         filterByRole("developer").then(function () {
+
           clearFilterByRole().then(function () {
             assert.deepEqual(jobsDisplayed(), [delhiTesterFlipkart], 'should clear filter');
             doneByRole();
+
             clearFilterByEmployer().then(function () {
               assert.deepEqual(jobsDisplayed(), delhiJobs, 'should clear filters recursively');
               doneByEmployer();
+
               clearFilterByLocation().then(function () {
                 assert.deepEqual(jobsDisplayed(), allJobs, 'should clear filters recursively');
                 doneByLocation();
@@ -253,6 +271,10 @@
     });
 
     assert.expect(3);
+  });
+
+  QUnit.test("Should show search ahead options", function (assert) {
+    assert.deepEqual(locationOptions(),["Mumbai", "Delhi", "Bangalore"],"should add data list for locations");
   });
 
 }).call(this);

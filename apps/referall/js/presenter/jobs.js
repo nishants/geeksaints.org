@@ -13,6 +13,18 @@
           return filtered;
         };
 
+        this.currentLocations = function(){
+          var locations=[],
+              locationsSet = {};
+          filtered.forEach(function (job) {
+            locationsSet[job.location] = "";
+          });
+          for(var location  in locationsSet){
+            locations.push(location);
+          }
+          return locations;
+        };
+
         this.selectBy = function (filter) {
           filtered = [];
           jobs.forEach(function (job) {
