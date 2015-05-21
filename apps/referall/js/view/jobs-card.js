@@ -28,7 +28,7 @@
               ($e).find(".job-url").html(url);
             },
             setHeading = function (head) {
-              ($e).find(".job-heading").html(head);
+              ($e).find(".job-role").html(head);
             },
             setLocation = function (location) {
               ($e).find(".job-location").html(location);

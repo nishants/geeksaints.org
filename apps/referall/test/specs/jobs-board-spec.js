@@ -80,7 +80,7 @@
             jobs.push({
               url       : $job.find(".job-url").html(),
               employer  : $job.find(".job-employer").html(),
-              role      : $job.find(".job-heading").html(),
+              role      : $job.find(".job-role").html(),
               location  : $job.find(".job-location").html()
             })
 
@@ -142,7 +142,7 @@
           "<div id='job-card-prototype' class='job-card'>" +
           "   <div class='job-url'></div>"+
           "   <div class='job-employer'></div>"+
-          "   <div class='job-heading'></div>"+
+          "   <div class='job-role'></div>"+
           "   <div class='job-location'></div>"+
           "   <div class='job-date'></div>"+
           "</div>",
