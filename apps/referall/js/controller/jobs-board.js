@@ -51,8 +51,7 @@
         return cards;
       },
 
-      render = function ($page, jobs) {
-        var cards = toCards(jobs);
+      render = function ($page, cards) {
         addToPage($page, cards);
         $page.show();
         return cards;
@@ -60,25 +59,28 @@
 
       cards = [], //TODO fails if cards is declared inside constructor
 
+      clearAll = function (cards) {
+        cards.forEach(function (jobCard) {
+          jobCard.remove();
+        });
+      },
+
       JobsBoard = function ($page, jobs) {
         JobCard = referall.JobCard;
-        var
-            clearJobs = function () {
-              cards.forEach(function (jobCard) {
-                jobCard.remove();
-              });
-              cards = [];
-            },
 
-            filterJobsBy = function () {
+        var filterJobsBy = function () {
               var filter = readFilter();
               if (renderingNeededFor(filter)) {
-                clearJobs();
-                new JobsBoard($page, jobs.selectBy(filter), JobCard);
+                clearAll(cards);
+                jobs = jobs.selectBy(filter);
+                cards = toCards(jobs.list());
+                render($page, cards);
               }
             };
 
-        cards = render($page, jobs.list());
+        cards = toCards(jobs.list());
+        render($page, cards);
+
         $locationFilter().on("blur", filterJobsBy);
         $employerFilter().on("blur", filterJobsBy);
         $roleFilter().on("blur", filterJobsBy);
