@@ -42,9 +42,12 @@
             jobsBoard = function () {
                 return $("#jobs-board");
             },
+            Jobs = referall.Jobs,
+            JobCard = referall.JobCard,
+            JobsBoard = referall.JobsBoard,
             init = function () {
                 $.get("data/jobs.json", function (response) {
-                    new referall.JobsBoard(jobsBoard(), new referall.Jobs(response.data), referall.JobCard);
+                    new JobsBoard(jobsBoard(), new Jobs(response.data), JobCard);
                 })
             };
 

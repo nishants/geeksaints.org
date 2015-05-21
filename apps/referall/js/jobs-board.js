@@ -2,7 +2,8 @@
   "use-strict"
 
   var getLocation = function(){return $("#filter-by-location");},
-      cards = [],
+      getEmployer = function(){return $("#filter-by-employer");},
+      cards = [], //TODO fails if cards is declared inside constructor
       JobsBoard = function ($page, jobs, JobCard) {
         var
             createCardsFor = function (jobs) {
@@ -22,7 +23,6 @@
             onFilterByLocation = function () {
               var location = getLocation().val();
               if(!location || location.trim() ==  ""){
-                // So it sticks to current filter.
                 return this;
               }
               removeCards();
@@ -30,10 +30,23 @@
                   $page,
                   jobs.filterByLocation(location),
                   JobCard);
+            },
+
+            onFilterByEmployer = function () {
+              var employer = getEmployer().val();
+              if(!employer || employer.trim() ==  ""){
+                return this;
+              }
+              removeCards();
+              return new JobsBoard(
+                  $page,
+                  jobs.filterByEmployer(employer),
+                  JobCard);
             };
 
         createCardsFor(jobs);
         getLocation().on("blur", onFilterByLocation);
+        getEmployer().on("blur", onFilterByEmployer);
         $page.show();
       };
 

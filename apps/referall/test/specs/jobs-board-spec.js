@@ -22,6 +22,13 @@
         input.trigger("blur");
         return {then: asyncCallback}
       },
+      
+      filterByEmployer = function (employer) {
+        var input = $("#filter-by-employer");
+        input.val(employer);
+        input.trigger("blur");
+        return {then: asyncCallback}
+      },
 
       jobsCreated = function(){
         var $jobs = $(".job-card"),
@@ -109,7 +116,7 @@
     assert.expect(1);
   });
 
-  QUnit.test("Should filter jobs by location, employer or role", function (assert) {
+  QUnit.test("Should filter jobs by location", function (assert) {
     var delhiJobs = [delhiTesterAmazon, delhiTesterFlipkart],
         mumbaiJobs = [mumbaiDeveloperFlipkart],
         delhiJobsFiltered = assert.async(),
@@ -126,6 +133,34 @@
     });
 
     assert.expect(2);
+  });
+
+  QUnit.test("Should filter jobs by employer", function (assert) {
+    var flipkartJobs = [mumbaiDeveloperFlipkart, delhiTesterFlipkart],
+        amazonJobs = [delhiTesterAmazon],
+        snapdealJobs = [bangaloreManagerSnapdeal],
+
+        flipkartJobsFiltered = assert.async(),
+        amazonJobsFiltered = assert.async(),
+        snapdealJobsFiltered = assert.async();
+
+    filterByEmployer("fliPkaRt").then(function () {
+      assert.deepEqual(jobsCreated(), flipkartJobs , 'filter by employer, ignoring case');
+      flipkartJobsFiltered();
+
+      filterByEmployer("aMaZon").then(function () {
+        assert.deepEqual(jobsCreated(), amazonJobs , 'filter by employer recursively');
+        amazonJobsFiltered();
+
+
+        filterByEmployer("snapdeal").then(function () {
+          assert.deepEqual(jobsCreated(), snapdealJobs , 'filter by employer recursively');
+          snapdealJobsFiltered();
+        });
+      });
+    });
+
+    assert.expect(3);
   });
 
 }).call(this);
