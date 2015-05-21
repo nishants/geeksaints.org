@@ -8,10 +8,16 @@
         return $page.find("#jobs-list");
       },
 
+      clear = function ($filter) {
+        $filter.val("");
+      },
+
       textIn = function (input) {
         return $(input).val()
       },
-
+      $clearButtonOf = function($filterInput){
+        return $filterInput.next();
+      },
       $locationFilter = function () {
         return $("#filter-by-location");
       },
@@ -35,12 +41,6 @@
         cards.forEach(function (card) {
           card.appendTo($jobsListIn($page));
         });
-      },
-
-      renderingNeededFor = function (filter) {
-        return filter.location ||
-            filter.role ||
-            filter.employer;
       },
 
       toCards = function (jobs) {
@@ -67,24 +67,24 @@
       JobsBoard = function ($page, jobs) {
         JobCard = referall.JobCard;
         var
-            cards = [],
-
+            cards = toCards(jobs.list()),
             filterJobs = function () {
-              var filter = readFilter();
-              if (renderingNeededFor(filter)) {
-                clearAll(cards);
-                jobs = jobs.selectBy(filter);
-                cards = toCards(jobs.list());
-                render($page, cards);
-              }
+              clearAll(cards);
+              jobs = jobs.selectBy(readFilter());
+              cards = toCards(jobs.list());
+              render($page, cards);
             };
 
-        cards = toCards(jobs.list());
         render($page, cards);
 
         $locationFilter().on("blur", filterJobs);
         $employerFilter().on("blur", filterJobs);
         $roleFilter().on("blur", filterJobs);
+
+        $clearButtonOf($roleFilter()).on("mousedown", function(){
+          clear($roleFilter());
+          filterJobs();
+        })
       };
 
   window.referall.JobsBoard = JobsBoard;

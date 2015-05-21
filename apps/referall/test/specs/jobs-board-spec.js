@@ -34,7 +34,7 @@
       },
 
       clearFilterByRole = function () {
-        $("#filter-by-role").next().trigger("onmousdown");
+        $("#filter-by-role").next().trigger("mousedown");
         return {then: asyncCallback}
       },
 
@@ -232,10 +232,9 @@
         filterByRole("developer").then(function () {
           assert.deepEqual(jobsDisplayed(), [], 'should display nothing if no job matches all criterion');
 
-          clearFilterByRole("developer").then(function () {
-            assert.deepEqual(jobsDisplayed(), delhiJobs , 'should display nothing if no job matches all criterion');
+          clearFilterByRole().then(function () {
+            assert.deepEqual(jobsDisplayed(), [delhiTesterFlipkart] , 'should clear filter');
             doneByRole();
-
           });
         });
       });
