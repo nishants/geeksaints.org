@@ -10,6 +10,8 @@ input, button {
   outline: none;
   padding: 0;
   margin: 0;
+  font-size: 4vh;
+
 }
 
 input:focus, {
@@ -56,7 +58,7 @@ input:focus, {
   ******************** forced style ********************
 */
 body{
-  font-size: 2vh;
+  font-size: 4vh;
 }
 
 .job-card-heading{
