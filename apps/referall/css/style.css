@@ -43,6 +43,11 @@ input:focus, {
 .large-font{
   font-size: 5vh;
 }
+
+.font-size7{
+  font-size: 70%;
+}
+
 .hidden{
   display: none !important;
 }
@@ -54,11 +59,24 @@ body{
   font-size: 2vh;
 }
 
+.job-card-heading{
+  overflow: hidden;
+  border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+}
+
+.job-employer{
+  text-align: center;
+}
+.job-role{
+  text-align: center;
+  min-width: 200px;
+}
 .job-card{
   background-color: rgb(219, 220, 45);
   margin: 2vh;
-  padding: 2vh;
+  padding: 5px;
   display: inline-block;
+  border-radius: 1px;
 }
 
 #jobs-board{
