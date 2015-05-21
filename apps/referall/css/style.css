@@ -3,14 +3,19 @@
 */
 
 
-input {
+input, button {
+  display: inline-block;
   text-indent: 1vh;
+  font-size: 8vh;
+  border: none;
+  outline: none;
   padding: 0;
   margin: 0;
-  font-size: 5vh;
+  height: 15vh;
+}
+
+input{
   border: none;
-  min-height: 10vh;
-  display: inline-block;
 }
 
 input:focus, {
@@ -26,19 +31,59 @@ input:focus, {
   min-height: 100vh;
 }
 
+.button{
+  height: 100%;
+  font-size: 8vh;
+  vertical-align: super;
+}
+
+.button.secondary{
+}
+
+.large-font{
+  font-size: 10vh;
+}
 /*
   ******************** forced style ********************
 */
+body{
+  font-size: 8vh;
+}
 
 #job-card{
   background-color: #00B7FF;
 }
 
 #jobs-board{
-  padding-top: 1vh;
-  padding-left: 1vh;
   background-color: #00B7FF;
+  padding-top: 1vh;
 }
 
-.filter-widget{
+
+.filter-widget {
+  margin: 1vh;
+  display: table;
+  margin-bottom: 1vh;
+  background-color: white;
+  width: 100%;
+}
+
+.filter-widget > input {
+  max-width: 66%;
+  padding: 2%;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.filter-widget > button {
+  float: right;
+  background-color: white;
+  color: red;
+  padding-left: 2vh;
+
+
+  max-width: 21%;
+  padding: 2%;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
