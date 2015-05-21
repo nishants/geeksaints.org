@@ -49,6 +49,7 @@
 
         this.appendTo = function ($to) {
           $to.append($e);
+          $e.removeClass("hidden")
         };
       };
 

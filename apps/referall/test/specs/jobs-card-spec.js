@@ -4,14 +4,15 @@
   var
       targetHtml = "<div id='jobs-container'></div>",
       prototypeHtml =
-          "<div id='job-card-prototype' class='job-card'>" +
+          "<div id='job-card-prototype' class='job-card hidden'>" +
           "   <div class='job-url'></div>"+
           "   <div class='job-employer'></div>"+
           "   <div class='job-heading'></div>"+
           "   <div class='job-location'></div>"+
           "   <div class='job-date'></div>"+
           "</div>",
-      jobCardsIn = function($e){return $e.find(".job-card");},
+
+      displayedJobs = function($e){return $e.find(".job-card");},
       target = function(){return $("#jobs-container");},
       dateIn = function($target){return $target.find(".job-date").first().html();},
       employerIn = function($target){return $target.find(".job-employer").first().html();},
@@ -38,20 +39,21 @@
         done = assert.async();
 
     jobCard.appendTo(target());
-    var createdJob = jobCardsIn(target()).first();
+    var createdJob = displayedJobs(target()).first();
 
     setTimeout(function(){
+      assert.notOk(createdJob.hasClass("hidden"), "format date to MMM/D");
       assert.equal(dateIn(createdJob), "May 20", "format date to MMM/D");
       assert.equal(employerIn(createdJob), "AB Corp", "render employer name");
       assert.equal(headingIn(createdJob), "Fundoo Programmer | Free Stay", "reder role name");
       assert.equal(locationIn(createdJob), "Bangalore", "render location name");
       //assert.ok(urlIn(createdJob), "abc.com");
       jobCard.remove();
-      assert.equal(jobCardsIn(target()).length, 0, "should delete self");
+      assert.equal(displayedJobs(target()).length, 0, "should delete self");
       done();
     });
 
-    assert.expect(5);
+    assert.expect(6);
   });
 
 }).call(this);
