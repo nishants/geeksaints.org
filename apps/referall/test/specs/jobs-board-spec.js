@@ -99,6 +99,24 @@
         }
         return list;
       },
+      employerOptions = function(){
+        var list = [],
+            options = $("#employers-options").find("option");
+
+        for(var i=0; i< options.length; i++){
+          list.push($(options[i]).attr("value"));
+        }
+        return list;
+      },
+      roleOptions = function(){
+        var list = [],
+            options = $("#roles-options").find("option");
+
+        for(var i=0; i< options.length; i++){
+          list.push($(options[i]).attr("value"));
+        }
+        return list;
+      },
 
       pageHtml =
           '<div id="jobs-board">                                      '+
@@ -274,14 +292,19 @@
   });
 
   QUnit.test("Should show search ahead options", function (assert) {
-    var
-        done = assert.async();
-    assert.deepEqual(locationOptions(),["Mumbai", "Delhi", "Bangalore"],"should add data list for locations");
-    filterByEmployer("flipkart").then(function(){
-      assert.deepEqual(locationOptions(),["Mumbai", "Delhi"],"Should update datalist on applying filter");
+    var done = assert.async();
+
+    assert.deepEqual(locationOptions(), ["Mumbai", "Delhi", "Bangalore"], "should add data list for locations");
+    assert.deepEqual(roleOptions(), ["Developer", "Tester", "Manager"], "should add data list for roles");
+    assert.deepEqual(employerOptions(), ["flipkart", "amazon", "snapdeal"], "should add data list for employers");
+
+    filterByEmployer("flipkart").then(function () {
+      assert.deepEqual(locationOptions(), ["Mumbai", "Delhi"], "Should update datalist on applying filter");
+      assert.deepEqual(roleOptions(), ["Developer", "Tester"], "should add data list for roles");
+      assert.deepEqual(employerOptions(), ["flipkart"], "should add data list for employers");
       done();
     });
-    assert.expect(2);
+    assert.expect(6);
   });
 
 }).call(this);

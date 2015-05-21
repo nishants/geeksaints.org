@@ -12,7 +12,7 @@
         this.list = function () {
           return filtered;
         };
-
+        
         this.currentLocations = function(){
           var locations=[],
               locationsSet = {};
@@ -23,6 +23,30 @@
             locations.push(location);
           }
           return locations;
+        };
+        
+        this.currentEmployers = function(){
+          var employers=[],
+              employersSet = {};
+          filtered.forEach(function (job) {
+            employersSet[job.employer] = "";
+          });
+          for(var employer  in employersSet){
+            employers.push(employer);
+          }
+          return employers;
+        };
+        
+        this.currentRoles = function(){
+          var roles=[],
+              rolesSet = {};
+          filtered.forEach(function (job) {
+            rolesSet[job.role] = "";
+          });
+          for(var role  in rolesSet){
+            roles.push(role);
+          }
+          return roles;
         };
 
         this.selectBy = function (filter) {

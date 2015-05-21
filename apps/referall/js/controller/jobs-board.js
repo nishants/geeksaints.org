@@ -64,6 +64,8 @@
       },
 
       $locationsList = function(){return $("#locations-options")},
+      $employersList = function(){return $("#employers-options")},
+      $rolesList = function(){return $("#roles-options")},
 
       setOptions = function (options, $list) {
         $list.find("option").remove();
@@ -82,11 +84,15 @@
               cards = toCards(jobs.list());
               render($page, cards);
               setOptions(jobs.currentLocations(), $locationsList());
+              setOptions(jobs.currentEmployers(), $employersList());
+              setOptions(jobs.currentRoles(), $rolesList());
             };
 
         render($page, cards);
 
         setOptions(jobs.currentLocations(), $locationsList());
+        setOptions(jobs.currentEmployers(), $employersList());
+        setOptions(jobs.currentRoles(), $rolesList());
 
         $locationFilter().on("blur", filterJobs);
         $employerFilter().on("blur", filterJobs);
