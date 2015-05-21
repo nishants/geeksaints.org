@@ -61,13 +61,22 @@
       pageHtml =
           '<div id="jobs-board">                                      '+
           '   <div id="filter-jobs" class="menu">                     '+
-          '       <input type="text" id="filter-by-location"/>        '+
-          '       <input type="text" id="filter-by-employer"/>        '+
-          '       <input type="text" id="filter-by-role"/>            '+
-          '   </div>                                                  '+
+          '        <div class="filter-widget">'+
+          '            <input type="text" id="filter-by-location"  placeholder="location"/>'+
+          '            <button class="button secondary large-font">X</button>'+
+          '        </div>'+
+
+          '        <div class="filter-widget">'+
+          '            <input  type="text" id="filter-by-employer" placeholder="employer"/>'+
+          '            <button class="button secondary large-font">X</button>'+
+          '        </div>'+
+          '  '+
+          '        <div class="filter-widget">'+
+          '            <input type="text" id="filter-by-role"    placeholder="role"/>'+
+          '            <button class="button secondary large-font">X</button>'+
+          '        </div>'+
           '   <div id="jobs-list" class="jobs-list">                  '+
-          '   </div>                                                  '+
-          '</div>                                                     ',
+          '   </div>                                                  ',
 
       jobCardPrototype =
           "<div id='job-card-prototype' class='job-card'>" +
