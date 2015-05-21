@@ -3,20 +3,22 @@
 
   var filterByLocation = function (jobs, location) {
     var filtered = [];
-    jobs.forEach(function(job){
-      if(job.location.toLowerCase() == location.toLowerCase()){
+    jobs.forEach(function (job) {
+      if (job.location.toLowerCase() == location.toLowerCase()) {
         filtered.push(job);
       }
     });
     return filtered;
   };
 
-  var Jobs = function(jobs){
+  var Jobs = function (jobs) {
     var filtered = jobs;
 
-    this.list = function(){return filtered;};
+    this.list = function () {
+      return filtered;
+    };
 
-    this.filterByLocation = function(location){
+    this.filterByLocation = function (location) {
       filtered = filterByLocation(jobs, location);
       return this;
     };

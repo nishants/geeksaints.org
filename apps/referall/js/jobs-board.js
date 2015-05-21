@@ -2,9 +2,9 @@
   "use-strict"
 
   var getLocation = function(){return $("#filter-by-location");},
+      cards = [],
       JobsBoard = function ($page, jobs, JobCard) {
         var
-            cards = [],
             createCardsFor = function (jobs) {
               jobs.list().forEach(function (job) {
                 var jobsCard = new JobCard(job);
@@ -16,6 +16,7 @@
               cards.forEach(function(jobCard){
                 jobCard.remove();
               });
+              cards = [];
             },
 
             onFilterByLocation = function () {

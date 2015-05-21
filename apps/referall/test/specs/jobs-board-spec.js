@@ -2,23 +2,13 @@
   "use strict"
 
   var
-      mumbaiDeveloperFlipkart = {url: "1", location: "Mumbai", role: "Developer", emlpoyer: "flipkart"},
-      delhiTesterAmazon = {url: "2", location: "Delhi", role: "Tester", emlpoyer: "amazon"},
-      bangaloreManagerSnapdeal = {url: "3", location: "Bangalaore", role: "Manager", emlpoyer: "snapdeal"},
-      delhiTesterFlipkart = {url: "4", location: "Delhi", role: "Tester", emlpoyer: "flipkart"},
+      mumbaiDeveloperFlipkart = {url: "1", location: "Mumbai", role: "Developer", employer: "flipkart"},
+      delhiTesterAmazon = {url: "2", location: "Delhi", role: "Tester", employer: "amazon"},
+      bangaloreManagerSnapdeal = {url: "3", location: "Bangalaore", role: "Manager", employer: "snapdeal"},
+      delhiTesterFlipkart = {url: "4", location: "Delhi", role: "Tester", employer: "flipkart"},
       jobs ,
       jobsCreated = [],
       page = function(){return $("#jobs-board");},
-
-      MockedJobsCard = function (job) {
-        this.appendTo = function($e){
-          if($e.id == page().id)jobsCreated.push(job);
-        };
-
-        this.remove = function(){
-          jobsCreated.splice(jobsCreated.indexOf(job), 1);
-        };
-      },
 
       asyncCallback = function (callback) {
         setTimeout(function(){
@@ -33,6 +23,36 @@
         return {then: asyncCallback}
       },
 
+      jobsCreated = function(){
+        var $jobs = $(".job-card"),
+            jobs = [];
+        for(var i =0; i < $jobs.length; i++ ){
+          var $job = $($jobs.get(i)),
+              isProttype = $job.attr("id") == "job-card-prototype";
+
+          if(!isProttype){
+            jobs.push({
+              url       : $job.find(".job-url").html(),
+              employer  : $job.find(".job-employer").html(),
+              role      : $job.find(".job-heading").html(),
+              location  : $job.find(".job-location").html()
+            })
+
+          }
+        }
+
+        return jobs;
+      },
+
+      areSame = function(aJob, anotherJob){
+        return
+                aJob.url == anotherJob.url &&
+                aJob.location == anotherJob.location &&
+                aJob.employer == anotherJob.employer &&
+                aJob.role == anotherJob.role;
+
+      },
+
       pageHtml =
           '<div id="jobs-board">                                      '+
           '   <div id="filter-jobs" class="menu">                     '+
@@ -41,35 +61,44 @@
           '       <input type="text" id="filter-by-role"></div>       '+
           '   </div>                                                  '+
           '   <div id="jobs-list" class="jobs-list">                  '+
-          '     <div id="sample-job-card" class="job-card">           '+
           '   </div>                                                  '+
-          '</div>                                                     ';
+          '</div>                                                     ',
+
+      prototypeHtml =
+          "<div id='job-card-prototype' class='job-card'>" +
+          "   <div class='job-url'></div>"+
+          "   <div class='job-employer'></div>"+
+          "   <div class='job-heading'></div>"+
+          "   <div class='job-location'></div>"+
+          "   <div class='job-date'></div>"+
+          "</div>"
+  ;
 
   QUnit.module("JobsBoard", {
     setup: function () {
       $("#qunit-fixture").append(pageHtml);
+      $("#qunit-fixture").append(prototypeHtml);
       page().hide();
-      jobsCreated = [];
       jobs = new referall.Jobs([
             mumbaiDeveloperFlipkart,
             delhiTesterAmazon,
             bangaloreManagerSnapdeal,
             delhiTesterFlipkart]
       );
-      new referall.JobsBoard(page(), jobs, MockedJobsCard);
+      new referall.JobsBoard(page(), jobs, referall.JobCard);
     }
   });
 
   QUnit.test("Should Display Page", function (assert) {
     assert.ok(page().is(":visible"), "Should display page");
-    assert.deepEqual(jobsCreated, jobs.list(), 'Should create a JobsCard for each jobs and append to document')
+    assert.deepEqual(jobsCreated(), jobs.list(), 'Should create a JobsCard for each jobs and append to document')
   });
 
   QUnit.test("Should not filter if no input is provided", function (assert) {
     var done = assert.async();
 
     filterByLocation("").then(function () {
-      assert.deepEqual(jobsCreated, [
+      assert.deepEqual(jobsCreated(), [
         mumbaiDeveloperFlipkart,
         delhiTesterAmazon,
         bangaloreManagerSnapdeal,
@@ -87,11 +116,11 @@
         mumbaiJobsFiltered = assert.async();
 
     filterByLocation("DeLhI").then(function () {
-      assert.deepEqual(jobsCreated, delhiJobs , 'filter by location, ignoring case');
+      assert.deepEqual(jobsCreated(), delhiJobs , 'filter by location, ignoring case');
       delhiJobsFiltered();
 
       filterByLocation("mumBAi").then(function () {
-        assert.deepEqual(jobsCreated, mumbaiJobs , 'filter by location recursively');
+        assert.deepEqual(jobsCreated(), mumbaiJobs , 'filter by location recursively');
         mumbaiJobsFiltered();
       });
     });

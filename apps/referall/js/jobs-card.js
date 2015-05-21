@@ -25,7 +25,7 @@
               ($e).find(".job-date").html(date);
             },
             setUrl = function (url) {
-              //  TODO
+              ($e).find(".job-url").html(url);
             },
             setHeading = function (head) {
               ($e).find(".job-heading").html(head);
