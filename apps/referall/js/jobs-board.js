@@ -1,15 +1,7 @@
 (function () {
   "use-strict"
 
-  var getLocation = function () {
-        return $("#filter-by-location");
-      },
-      getEmployer = function () {
-        return $("#filter-by-employer");
-      },
-      getRole = function () {
-        return $("#filter-by-role");
-      },
+  var
       $jobsListIn = function ($page) {
         return $page.find("#jobs-list");
       },
@@ -45,41 +37,25 @@
                 removeCards();
                 new JobsBoard($page, jobs.selectBy(filter), JobCard);
               }
-            },
-
-            onFilterByEmployer = function () {
-              var employer = getEmployer().val();
-              if (!employer || employer.trim() == "") {
-                return this;
-              }
-              removeCards();
-              return new JobsBoard(
-                  $page,
-                  jobs.filterByEmployer(employer),
-                  JobCard);
-            },
-
-            onFilterByRole = function () {
-              var role = getRole().val();
-              if (!role || role.trim() == "") {
-                return this;
-              }
-              removeCards();
-              return new JobsBoard(
-                  $page,
-                  jobs.filterByRole(role),
-                  JobCard);
             };
 
         createCardsFor(jobs);
 
-        $("#filter-by-location").on("blur", function(){
+        $("#filter-by-location").on("blur", function () {
           filterJobsBy({location: textIn(this)});
           return false;
         });
 
-        getEmployer().on("blur", onFilterByEmployer);
-        getRole().on("blur", onFilterByRole);
+        $("#filter-by-employer").on("blur", function () {
+          filterJobsBy({employer: textIn(this)});
+          return false;
+        });
+
+        $("#filter-by-role").on("blur", function () {
+          filterJobsBy({role: textIn(this)});
+          return false;
+        });
+
         $page.show();
       };
 
