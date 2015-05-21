@@ -9,6 +9,26 @@
       textIn = function (input) {
         return $(input).val()
       },
+
+      $locationFilter = function(){
+        return $("#filter-by-location");
+      },
+      $employerFilter = function(){
+        return $("#filter-by-employer");
+      },
+
+      $roleFilter = function(){
+        return $("#filter-by-role");
+      },
+
+      readFilter = function(){
+        return {
+          location: textIn($locationFilter()),
+          employer: textIn($employerFilter()),
+          role:     textIn($roleFilter())
+        };
+      },
+
       renderingNeededFor = function (filter) {
         return filter.location ||
                 filter.role ||
@@ -25,38 +45,29 @@
                 jobsCard.appendTo($jobsListIn($page));
               })
             },
-            removeCards = function () {
+
+            clearJobs = function () {
               cards.forEach(function (jobCard) {
                 jobCard.remove();
               });
               cards = [];
             },
 
-            filterJobsBy = function (filter) {
+            filterJobsBy = function () {
+              var filter = readFilter();
+
               if (renderingNeededFor(filter)) {
-                removeCards();
+                clearJobs();
                 new JobsBoard($page, jobs.selectBy(filter), JobCard);
               }
             };
 
         createCardsFor(jobs);
-
-        $("#filter-by-location").on("blur", function () {
-          filterJobsBy({location: textIn(this)});
-          return false;
-        });
-
-        $("#filter-by-employer").on("blur", function () {
-          filterJobsBy({employer: textIn(this)});
-          return false;
-        });
-
-        $("#filter-by-role").on("blur", function () {
-          filterJobsBy({role: textIn(this)});
-          return false;
-        });
-
         $page.show();
+
+        $locationFilter().on("blur", filterJobsBy);
+        $employerFilter().on("blur", filterJobsBy);
+        $roleFilter().on("blur", filterJobsBy);
       };
 
   window.referall.JobsBoard = JobsBoard;
