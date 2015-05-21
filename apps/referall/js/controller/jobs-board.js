@@ -57,7 +57,6 @@
         return cards;
       },
 
-      cards = [], //TODO fails if cards is declared inside constructor
 
       clearAll = function (cards) {
         cards.forEach(function (jobCard) {
@@ -67,8 +66,10 @@
 
       JobsBoard = function ($page, jobs) {
         JobCard = referall.JobCard;
+        var
+            cards = [],
 
-        var filterJobsBy = function () {
+            filterJobsBy = function () {
               var filter = readFilter();
               if (renderingNeededFor(filter)) {
                 clearAll(cards);
