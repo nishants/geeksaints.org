@@ -37,7 +37,7 @@
         return {then: asyncCallback}
       },
 
-      jobsCreated = function(){
+      jobsDisplayed = function(){
         var $jobs = $(".job-card"),
             jobs = [];
         for(var i =0; i < $jobs.length; i++ ){
@@ -58,15 +58,6 @@
         return jobs;
       },
 
-      areSame = function(aJob, anotherJob){
-        return
-                aJob.url == anotherJob.url &&
-                aJob.location == anotherJob.location &&
-                aJob.employer == anotherJob.employer &&
-                aJob.role == anotherJob.role;
-
-      },
-
       pageHtml =
           '<div id="jobs-board">                                      '+
           '   <div id="filter-jobs" class="menu">                     '+
@@ -78,7 +69,7 @@
           '   </div>                                                  '+
           '</div>                                                     ',
 
-      prototypeHtml =
+      jobCardPrototype =
           "<div id='job-card-prototype' class='job-card'>" +
           "   <div class='job-url'></div>"+
           "   <div class='job-employer'></div>"+
@@ -91,7 +82,7 @@
   QUnit.module("JobsBoard", {
     setup: function () {
       $("#qunit-fixture").append(pageHtml);
-      $("#qunit-fixture").append(prototypeHtml);
+      $("#qunit-fixture").append(jobCardPrototype);
       page().hide();
       jobs = new referall.Jobs([
             mumbaiDeveloperFlipkart,
@@ -105,22 +96,37 @@
 
   QUnit.test("Should Display Page", function (assert) {
     assert.ok(page().is(":visible"), "Should display page");
-    assert.deepEqual(jobsCreated(), jobs.list(), 'Should create a JobsCard for each jobs and append to document')
+    assert.deepEqual(jobsDisplayed(), jobs.list(), 'Should create a JobsCard for each jobs and append to document')
   });
 
   QUnit.test("Should not filter if no input is provided", function (assert) {
-    var done = assert.async();
+    var
+        doneByLocation = assert.async(),
+        doneByRole = assert.async(),
+        doneByEmpoyer = assert.async(),
+
+        allJobs = [
+          mumbaiDeveloperFlipkart,
+          delhiTesterAmazon,
+          bangaloreManagerSnapdeal,
+          delhiTesterFlipkart];
 
     filterByLocation("").then(function () {
-      assert.deepEqual(jobsCreated(), [
-        mumbaiDeveloperFlipkart,
-        delhiTesterAmazon,
-        bangaloreManagerSnapdeal,
-        delhiTesterFlipkart] , 'ignore no input');
-      done();
+      assert.deepEqual(jobsDisplayed(), allJobs, 'ignore no input for location');
+      doneByLocation();
+
+      filterByRole("").then(function () {
+        assert.deepEqual(jobsDisplayed(), allJobs, 'ignore no input for role');
+        doneByRole();
+
+        filterByEmployer("").then(function () {
+          assert.deepEqual(jobsDisplayed(), allJobs, 'ignore no input for employer');
+          doneByEmpoyer();
+        });
+      });
     });
 
-    assert.expect(1);
+    assert.expect(3);
   });
 
   QUnit.test("Should filter jobs by location", function (assert) {
@@ -130,11 +136,11 @@
         mumbaiJobsFiltered = assert.async();
 
     filterByLocation("DeLhI").then(function () {
-      assert.deepEqual(jobsCreated(), delhiJobs , 'filter by location, ignoring case');
+      assert.deepEqual(jobsDisplayed(), delhiJobs , 'filter by location, ignoring case');
       delhiJobsFiltered();
 
       filterByLocation("mumBAi").then(function () {
-        assert.deepEqual(jobsCreated(), mumbaiJobs , 'filter by location recursively');
+        assert.deepEqual(jobsDisplayed(), mumbaiJobs , 'filter by location recursively');
         mumbaiJobsFiltered();
       });
     });
@@ -152,15 +158,15 @@
         snapdealJobsFiltered = assert.async();
 
     filterByEmployer("fliPkaRt").then(function () {
-      assert.deepEqual(jobsCreated(), flipkartJobs , 'filter by employer, ignoring case');
+      assert.deepEqual(jobsDisplayed(), flipkartJobs , 'filter by employer, ignoring case');
       flipkartJobsFiltered();
 
       filterByEmployer("aMaZon").then(function () {
-        assert.deepEqual(jobsCreated(), amazonJobs , 'filter by employer recursively');
+        assert.deepEqual(jobsDisplayed(), amazonJobs , 'filter by employer recursively');
         amazonJobsFiltered();
         
         filterByEmployer("snapdeal").then(function () {
-          assert.deepEqual(jobsCreated(), snapdealJobs , 'filter by employer recursively');
+          assert.deepEqual(jobsDisplayed(), snapdealJobs , 'filter by employer recursively');
           snapdealJobsFiltered();
         });
       });
@@ -179,15 +185,15 @@
         managerJobsFiltered = assert.async();
 
     filterByRole("dEveLoper").then(function () {
-      assert.deepEqual(jobsCreated(), developerJobs , 'filter by role, ignoring case');
+      assert.deepEqual(jobsDisplayed(), developerJobs , 'filter by role, ignoring case');
       developerJobsFiltered();
 
       filterByRole("tEsteR").then(function () {
-        assert.deepEqual(jobsCreated(), testerJobs , 'filter by role recursively');
+        assert.deepEqual(jobsDisplayed(), testerJobs , 'filter by role recursively');
         testerJobsFiltered();
         
         filterByRole("ManAger").then(function () {
-          assert.deepEqual(jobsCreated(), managerJobs , 'filter by role recursively');
+          assert.deepEqual(jobsDisplayed(), managerJobs , 'filter by role recursively');
           managerJobsFiltered();
         });
       });
