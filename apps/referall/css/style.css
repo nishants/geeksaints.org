@@ -1,17 +1,44 @@
-/*this css must only have style temporarily, unless refactored
-into the css lib*/
+/*
+  ******************** Undo's ********************
+*/
 
-body{
+
+input {
+  text-indent: 1vh;
+  padding: 0;
+  margin: 0;
+  font-size: 5vh;
+  border: none;
+  min-height: 10vh;
+  display: inline-block;
 }
+
+input:focus, {
+  outline: none;
+  box-shadow: 1px 1px 14px 14px rgba(164, 233, 235, 1);
+}
+
+/*
+  ******************** behaviours ********************
+*/
 
 .full-height{
   min-height: 100vh;
 }
+
+/*
+  ******************** forced style ********************
+*/
 
 #job-card{
   background-color: #00B7FF;
 }
 
 #jobs-board{
+  padding-top: 1vh;
+  padding-left: 1vh;
   background-color: #00B7FF;
+}
+
+.filter-widget{
 }

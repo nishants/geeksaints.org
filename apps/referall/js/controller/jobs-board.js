@@ -69,7 +69,7 @@
         var
             cards = [],
 
-            filterJobsBy = function () {
+            filterJobs = function () {
               var filter = readFilter();
               if (renderingNeededFor(filter)) {
                 clearAll(cards);
@@ -82,9 +82,9 @@
         cards = toCards(jobs.list());
         render($page, cards);
 
-        $locationFilter().on("blur", filterJobsBy);
-        $employerFilter().on("blur", filterJobsBy);
-        $roleFilter().on("blur", filterJobsBy);
+        $locationFilter().on("blur", filterJobs);
+        $employerFilter().on("blur", filterJobs);
+        $roleFilter().on("blur", filterJobs);
       };
 
   window.referall.JobsBoard = JobsBoard;
