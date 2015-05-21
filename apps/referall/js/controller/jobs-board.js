@@ -10,40 +10,46 @@
         return $(input).val()
       },
 
-      $locationFilter = function(){
+      $locationFilter = function () {
         return $("#filter-by-location");
       },
-      $employerFilter = function(){
+      $employerFilter = function () {
         return $("#filter-by-employer");
       },
 
-      $roleFilter = function(){
+      $roleFilter = function () {
         return $("#filter-by-role");
       },
 
-      readFilter = function(){
+      readFilter = function () {
         return {
           location: textIn($locationFilter()),
           employer: textIn($employerFilter()),
-          role:     textIn($roleFilter())
+          role: textIn($roleFilter())
         };
       },
 
       renderingNeededFor = function (filter) {
         return filter.location ||
-                filter.role ||
-                filter.employer;
+            filter.role ||
+            filter.employer;
       },
 
       cards = [], //TODO fails if cards is declared inside constructor
       JobsBoard = function ($page, jobs, JobCard) {
         var
-            createCardsFor = function (jobs) {
-              jobs.list().forEach(function (job) {
-                var jobsCard = new JobCard(job);
-                cards.push(jobsCard);
-                jobsCard.appendTo($jobsListIn($page));
-              })
+            addToPage = function (cards) {
+              cards.forEach(function (card) {
+                card.appendTo($jobsListIn($page));
+              });
+            },
+
+            toCards = function (jobs) {
+              var cards = [];
+              jobs.forEach(function (job) {
+                cards.push(new JobCard(job))
+              });
+              return cards;
             },
 
             clearJobs = function () {
@@ -55,16 +61,19 @@
 
             filterJobsBy = function () {
               var filter = readFilter();
-
               if (renderingNeededFor(filter)) {
                 clearJobs();
                 new JobsBoard($page, jobs.selectBy(filter), JobCard);
               }
+            },
+
+            render = function () {
+              cards = toCards(jobs.list());
+              addToPage(cards);
+              $page.show();
             };
 
-        createCardsFor(jobs);
-        $page.show();
-
+        render();
         $locationFilter().on("blur", filterJobsBy);
         $employerFilter().on("blur", filterJobsBy);
         $roleFilter().on("blur", filterJobsBy);
