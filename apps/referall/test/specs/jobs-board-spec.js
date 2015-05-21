@@ -33,6 +33,16 @@
         })
       },
 
+      clearFilterByLocation = function () {
+        $("#filter-by-location").next().trigger("mousedown");
+        return {then: asyncCallback}
+      },
+
+      clearFilterByEmployer = function () {
+        $("#filter-by-employer").next().trigger("mousedown");
+        return {then: asyncCallback}
+      },
+
       clearFilterByRole = function () {
         $("#filter-by-role").next().trigger("mousedown");
         return {then: asyncCallback}
@@ -224,23 +234,25 @@
         doneByEmployer = assert.async();
 
     filterByLocation("delhi").then(function () {
-      doneByLocation();
-
       filterByEmployer("flipkart").then(function () {
-        doneByEmployer();
-
         filterByRole("developer").then(function () {
-          assert.deepEqual(jobsDisplayed(), [], 'should display nothing if no job matches all criterion');
-
           clearFilterByRole().then(function () {
-            assert.deepEqual(jobsDisplayed(), [delhiTesterFlipkart] , 'should clear filter');
+            assert.deepEqual(jobsDisplayed(), [delhiTesterFlipkart], 'should clear filter');
             doneByRole();
+            clearFilterByEmployer().then(function () {
+              assert.deepEqual(jobsDisplayed(), delhiJobs, 'should clear filters recursively');
+              doneByEmployer();
+              clearFilterByLocation().then(function () {
+                assert.deepEqual(jobsDisplayed(), allJobs, 'should clear filters recursively');
+                doneByLocation();
+              });
+            });
           });
         });
       });
     });
 
-    assert.expect(2);
+    assert.expect(3);
   });
 
 }).call(this);

@@ -57,7 +57,6 @@
         return cards;
       },
 
-
       clearAll = function (cards) {
         cards.forEach(function (jobCard) {
           jobCard.remove();
@@ -84,7 +83,18 @@
         $clearButtonOf($roleFilter()).on("mousedown", function(){
           clear($roleFilter());
           filterJobs();
-        })
+        });
+
+        $clearButtonOf($employerFilter()).on("mousedown", function(){
+          clear($employerFilter());
+          filterJobs();
+        });
+
+        $clearButtonOf($locationFilter()).on("mousedown", function(){
+          clear($locationFilter());
+          filterJobs();
+        });
+
       };
 
   window.referall.JobsBoard = JobsBoard;
