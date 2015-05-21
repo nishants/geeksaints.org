@@ -95,26 +95,27 @@ body{
 
 .filter-widget {
   margin: 1vh;
-  display: table;
+  display: inline-block;
   margin-bottom: 1vh;
   background-color: white;
-  width: 100%;
+  padding-right: 5px;
+  min-width: 450px;
+
 }
 
 .filter-widget > input {
-  max-width: 75%;
-  padding: 2%;
+  min-width: 300px;
+  float: left;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
 .filter-widget > button {
+  min-width: 130px;
   float: right;
   background-color: white;
   color: red;
   padding-left: 2vh;
-  max-width: 12%;
-  padding: 2%;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
