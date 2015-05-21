@@ -48,7 +48,7 @@
             JobCard = referall.JobCard,
             JobsBoard = referall.JobsBoard,
             init = function () {
-                $.get("data/jobs.json", function (response) {
+                $.get("jobs/all.json", function (response) {
                     new JobsBoard(jobsBoard(), new JobsView(response.data), JobCard);
                 })
             };
