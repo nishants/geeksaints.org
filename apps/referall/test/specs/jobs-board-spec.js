@@ -22,7 +22,14 @@
         input.trigger("blur");
         return {then: asyncCallback}
       },
-      
+
+      filterByRole = function (rolel) {
+        var input = $("#filter-by-role");
+        input.val(rolel);
+        input.trigger("blur");
+        return {then: asyncCallback}
+      },
+
       filterByEmployer = function (employer) {
         var input = $("#filter-by-employer");
         input.val(employer);
@@ -151,11 +158,37 @@
       filterByEmployer("aMaZon").then(function () {
         assert.deepEqual(jobsCreated(), amazonJobs , 'filter by employer recursively');
         amazonJobsFiltered();
-
-
+        
         filterByEmployer("snapdeal").then(function () {
           assert.deepEqual(jobsCreated(), snapdealJobs , 'filter by employer recursively');
           snapdealJobsFiltered();
+        });
+      });
+    });
+
+    assert.expect(3);
+  })  
+  
+  QUnit.test("Should filter jobs by role", function (assert) {
+    var developerJobs = [mumbaiDeveloperFlipkart],
+        testerJobs = [delhiTesterAmazon, delhiTesterFlipkart],
+        managerJobs = [bangaloreManagerSnapdeal],
+
+        developerJobsFiltered = assert.async(),
+        testerJobsFiltered = assert.async(),
+        managerJobsFiltered = assert.async();
+
+    filterByRole("dEveLoper").then(function () {
+      assert.deepEqual(jobsCreated(), developerJobs , 'filter by role, ignoring case');
+      developerJobsFiltered();
+
+      filterByRole("tEsteR").then(function () {
+        assert.deepEqual(jobsCreated(), testerJobs , 'filter by role recursively');
+        testerJobsFiltered();
+        
+        filterByRole("ManAger").then(function () {
+          assert.deepEqual(jobsCreated(), managerJobs , 'filter by role recursively');
+          managerJobsFiltered();
         });
       });
     });

@@ -3,25 +3,25 @@
     {
       "url" : "http://geeksaints.org",
       "employer" : "Flipkart",
-      "role" : "Fundoo Programmer",
+      "role" : "tester",
       "location"   : "Delhi",
       "time" : "1432068952182"
     },{
       "url" : "http://joho.org",
       "employer" : "Amazon",
-      "role" : "Fundoo Programmer",
+      "role" : "manager",
       "location"   : "Chennai",
       "time" : "1432068952182"
     },{
       "url" : "http://snapdeal.org",
       "employer" : "Snapdeal",
-      "role" : "Fundoo Programmer",
+      "role" : "developer",
       "location"   : "Bangalore",
       "time" : "1432068952182"
     },{
       "url" : "http://goole.org",
       "employer" : "Google",
-      "role" : "Fundoo Programmer",
+      "role" : "tester",
       "location"   : "Delhi",
       "time" : "1432068952182"
     }

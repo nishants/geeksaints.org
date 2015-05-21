@@ -18,6 +18,15 @@
           }
         });
         return filtered;
+      },
+      filterByRole = function (jobs, role) {
+        var filtered = [];
+        jobs.forEach(function (job) {
+          if (job.role.toLowerCase() == role.toLowerCase()) {
+            filtered.push(job);
+          }
+        });
+        return filtered;
       };
 
   var Jobs = function (jobs) {
@@ -34,6 +43,11 @@
 
     this.filterByEmployer = function (employer) {
       filtered = filterByEmployer(jobs, employer);
+      return this;
+    };
+
+    this.filterByRole = function (role) {
+      filtered = filterByRole(jobs, role);
       return this;
     };
   };
