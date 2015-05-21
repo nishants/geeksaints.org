@@ -274,7 +274,14 @@
   });
 
   QUnit.test("Should show search ahead options", function (assert) {
+    var
+        done = assert.async();
     assert.deepEqual(locationOptions(),["Mumbai", "Delhi", "Bangalore"],"should add data list for locations");
+    filterByEmployer("flipkart").then(function(){
+      assert.deepEqual(locationOptions(),["Mumbai", "Delhi"],"Should update datalist on applying filter");
+      done();
+    });
+    assert.expect(2);
   });
 
 }).call(this);

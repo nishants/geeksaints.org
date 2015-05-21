@@ -66,7 +66,7 @@
       $locationsList = function(){return $("#locations-options")},
 
       setOptions = function (options, $list) {
-        $list.find("options").remove();
+        $list.find("option").remove();
         options.forEach(function(option){
           $list.append('<option value="<value>">'.replace('<value>', option));
         })
@@ -81,6 +81,7 @@
               jobs = jobs.selectBy(readFilter());
               cards = toCards(jobs.list());
               render($page, cards);
+              setOptions(jobs.currentLocations(), $locationsList());
             };
 
         render($page, cards);
