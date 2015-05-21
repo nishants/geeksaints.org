@@ -86,6 +86,7 @@ body{
   padding: 5px;
   display: inline-block;
   border-radius: 1px;
+  width: 300px;
 }
 
 #jobs-board{
@@ -100,7 +101,6 @@ body{
   background-color: white;
   padding-right: 5px;
   min-width: 450px;
-
 }
 
 .filter-widget > input {
