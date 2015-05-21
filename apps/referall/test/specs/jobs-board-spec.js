@@ -84,7 +84,7 @@
       $("#qunit-fixture").append(pageHtml);
       $("#qunit-fixture").append(jobCardPrototype);
       page().hide();
-      jobs = new referall.Jobs([
+      jobs = new referall.JobsView([
             mumbaiDeveloperFlipkart,
             delhiTesterAmazon,
             bangaloreManagerSnapdeal,

@@ -6,7 +6,7 @@
         return str1.toLowerCase() == str2.toLowerCase();
       },
 
-      Jobs = function (jobs) {
+      JobsView = function (jobs) {
         var filtered = jobs;
 
         this.list = function () {
@@ -28,5 +28,5 @@
         };
       };
 
-  window.referall.Jobs = Jobs;
+  window.referall.JobsView = JobsView;
 }).call(this);
