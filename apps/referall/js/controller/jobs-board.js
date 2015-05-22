@@ -94,9 +94,9 @@
         setOptions(jobs.currentEmployers(), $employersList());
         setOptions(jobs.currentRoles(), $rolesList());
 
-        $locationFilter().on("blur", filterJobs);
-        $employerFilter().on("blur", filterJobs);
-        $roleFilter().on("blur", filterJobs);
+        $locationFilter().on("input", filterJobs);
+        $employerFilter().on("input", filterJobs);
+        $roleFilter().on("input", filterJobs);
 
         $clearButtonOf($roleFilter()).on("mousedown", function(){
           clear($roleFilter());

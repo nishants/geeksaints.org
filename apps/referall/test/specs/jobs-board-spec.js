@@ -51,21 +51,21 @@
       filterByLocation = function (location) {
         var input = $("#filter-by-location");
         input.val(location);
-        input.trigger("blur");
+        input.trigger("input");
         return {then: asyncCallback}
       },
 
       filterByRole = function (rolel) {
         var input = $("#filter-by-role");
         input.val(rolel);
-        input.trigger("blur");
+        input.trigger("input");
         return {then: asyncCallback}
       },
 
       filterByEmployer = function (employer) {
         var input = $("#filter-by-employer");
         input.val(employer);
-        input.trigger("blur");
+        input.trigger("input");
         return {then: asyncCallback}
       },
 
