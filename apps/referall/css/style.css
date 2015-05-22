@@ -61,6 +61,12 @@ input:focus, {
 .font-arial {
   font-family: Arial, Helvetica, sans-serif;
 }
+.text-rl-blue{
+  color: rgba(0, 51, 102, 1)
+}
+.bg-rl-blue{
+  background-color: rgba(0, 51, 102, 1)
+}
 
 .text-dirty-yellow {
   color: rgba(238, 237, 37, 1) !important;
@@ -112,16 +118,12 @@ body {
 }
 
 .job-card {
-  background-color: rgba(2124, 217, 65, 0.9);
+  background-color: rgba(254, 218, 72, 1);
   margin: 2vh;
   padding: 5px;
   display: inline-block;
   border-radius: 1px;
   min-width: 333px;
-}
-
-#filter-jobs {
-  background-color: rgba(56,56,56,1);
 }
 
 #jobs-board {
