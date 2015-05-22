@@ -2,7 +2,6 @@
   ******************** Undo's ********************
 */
 
-
 input, button {
   display: inline-block;
   text-indent: 1vh;
@@ -19,11 +18,12 @@ input:focus, {
   outline: none;
   box-shadow: 1px 1px 14px 14px rgba(164, 233, 235, 1);
 }
-.pull-left{
+
+.pull-left {
   float: left;
 }
 
-.pull-right{
+.pull-right {
   float: right;
 }
 
@@ -31,49 +31,50 @@ input:focus, {
   ******************** behaviours ********************
 */
 
-.full-height{
+.full-height {
   min-height: 100vh;
 }
 
-.button{
+.button {
   height: 100%;
   vertical-align: super;
 }
 
-.button.secondary{
+.button.secondary {
 }
 
-.large-font{
+.large-font {
   font-size: 5vh;
 }
 
-.font-size7{
+.font-size7 {
   font-size: 70%;
 }
 
-.hidden{
+.hidden {
   display: none !important;
 }
 
-.font-arial{
+.font-arial {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.text-dirty-yellow{
+.text-dirty-yellow {
   color: rgba(238, 237, 37, 1) !important;
 }
 
-.text-green{
-  color: rgb(48,139, 42);
+.text-green {
+  color: rgb(48, 139, 42);
 }
-.bg-green{
-  background-color: rgb(48,139, 42);
+
+.bg-green {
+  background-color: rgb(48, 139, 42);
 }
 
 .shadow {
-  -webkit-box-shadow: 1px 3px 10px 1px #090606;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-  -moz-box-shadow:    1px 3px 10px 1px #090606;  /* Firefox 3.5 - 3.6 */
-  box-shadow:         1px 3px 10px 1px #090606;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  -webkit-box-shadow: 1px 3px 10px 1px #090606; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 1px 3px 10px 1px #090606; /* Firefox 3.5 - 3.6 */
+  box-shadow: 1px 3px 10px 1px #090606; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
 
 /*
@@ -84,24 +85,26 @@ input:focus, {
   src: url("../fonts/kaushan.otf") format("opentype");
 }
 
-body{
+body {
   font-size: 4vh;
   font-family: kaushan;
 }
 
-.job-card-heading{
+.job-card-heading {
   overflow: hidden;
   border-bottom: 1px solid rgba(48, 139, 42, 0.1);
 }
 
-.job-employer{
+.job-employer {
   text-align: center;
 }
-.job-role{
+
+.job-role {
   text-align: center;
   min-width: 200px;
 }
-.job-card{
+
+.job-card {
   background-color: rgba(2124, 217, 65, 0.9);
   margin: 2vh;
   padding: 5px;
@@ -110,11 +113,11 @@ body{
   width: 450px;
 }
 
-#filter-jobs{
+#filter-jobs {
   border-bottom: 1px solid rgba(234, 208, 62, 0.5);
 }
 
-#jobs-board{
+#jobs-board {
   background-color: transparent;
   padding-top: 1vh;
 }
@@ -123,7 +126,7 @@ body{
   margin: 1vh;
   display: inline-block;
   margin-bottom: 1vh;
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(255, 255, 255, 0.2);
   height: 10vh;
 }
 
@@ -137,25 +140,26 @@ body{
 .filter-widget > button {
   float: right;
   text-align: center;
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   padding: 5px;
   font-size: 5vh;
   width: 10vh;
 }
 
-
 input::-webkit-input-placeholder {
-  color: rgba(208,207,78, 0.47);
+  color: rgba(208, 207, 78, 0.47);
 }
 
-input:-moz-placeholder { /* Firefox 18- */
-  color: rgba(208,207,78, 0.47);
+input:-moz-placeholder {
+  /* Firefox 18- */
+  color: rgba(208, 207, 78, 0.47);
 }
 
-input::-moz-placeholder {  /* Firefox 19+ */
-  color: rgba(208,207,78, 0.47);
+input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: rgba(208, 207, 78, 0.47);
 }
 
 input:-ms-input-placeholder {
-  color: rgba(208,207,78, 0.47);
+  color: rgba(208, 207, 78, 0.47);
 }
