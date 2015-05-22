@@ -19,22 +19,22 @@
     <script src="js/controller/jobs-board.js"></script>
 </head>
 
-<body id='referall-center'>
+<body id='referall-center' class="bg-green">
 
 <div id="jobs-board" class="full-height">
     <div id="filter-jobs" class="menu">
 
-        <div class="filter-widget">
+        <div class="filter-widget shadow">
             <input type='text' id="filter-by-location"  placeholder="location" list="locations-options"/>
             <button class="button large-font font-arial">X</button>
         </div>
 
-        <div class="filter-widget">
+        <div class="filter-widget shadow">
             <input  type='text' id="filter-by-employer" placeholder="employer" list="employers-options"/>
             <button class="button large-font font-arial">X</button>
         </div>
 
-        <div class="filter-widget">
+        <div class="filter-widget shadow">
             <input type='text' id="filter-by-role"    placeholder="role"       list="roles-options"/>
             <button class="button large-font font-arial">X</button>
         </div>
@@ -42,7 +42,7 @@
 
     <div id="jobs-list"></div>
 
-    <div id="job-card-prototype" class="job-card hidden">
+    <div id="job-card-prototype" class="job-card text-green shadow hidden">
         <div class="job-card-heading font-size7">
             <span class='job-location pull-left'></span>
             <span class='job-date pull-right'></span>

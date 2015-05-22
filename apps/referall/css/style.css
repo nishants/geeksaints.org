@@ -59,6 +59,19 @@ input:focus, {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.text-green{
+  color: rgb(48,139, 42);
+}
+.bg-green{
+  background-color: rgb(48,139, 42);
+}
+
+.shadow {
+  -webkit-box-shadow: 1px 3px 10px 1px #090606;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    1px 3px 10px 1px #090606;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         1px 3px 10px 1px #090606;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
 /*
   ******************** forced style ********************
 */
@@ -85,7 +98,7 @@ body{
   min-width: 200px;
 }
 .job-card{
-  background-color: rgb(219, 220, 45);
+  background-color: rgba(2124, 217, 65, 0.9);
   margin: 2vh;
   padding: 5px;
   display: inline-block;
