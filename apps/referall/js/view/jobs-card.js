@@ -25,7 +25,9 @@
               ($e).find(".job-date").html(date);
             },
             setUrl = function (url) {
-              ($e).find(".job-url").html(url);
+              $e.on("mousedown", function () {
+                window.open(url);
+              });
             },
             setHeading = function (head) {
               ($e).find(".job-role").html(head);
