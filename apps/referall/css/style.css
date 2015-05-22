@@ -144,6 +144,7 @@ body {
   background-color: transparent;
   padding: 5px;
   font-size: 5vh;
+  max-width: 80%;
 }
 
 .filter-widget > button {
@@ -153,6 +154,7 @@ body {
   padding: 5px;
   font-size: 5vh;
   width: 10vh;
+  max-width: 15%;
 }
 
 input::-webkit-input-placeholder {
@@ -171,10 +173,6 @@ input:-ms-input-placeholder {
   color: rgb(207, 207, 207);
 }
 
-#trademark{
-  font-size: 10vh;
-  vertical-align: super;
-}
 .trademark-word-one{
   vertical-align: super;
   color: rgb(255, 255, 255);
@@ -182,4 +180,17 @@ input:-ms-input-placeholder {
 
 .trademark-word-two{
   color: rgb(254, 218, 72);
+}
+
+#trademark{
+  font-size: 10vh;
+  display: inline-block;
+}
+
+#filter-controls{
+  display: inline-block;
+}
+
+#controls{
+  overflow: auto;
 }
