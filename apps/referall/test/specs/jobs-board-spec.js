@@ -2,10 +2,10 @@
   "use strict"
 
   var
-      mumbaiDeveloperFlipkart = {url: "1", location: "Mumbai", role: "Developer", employer: "flipkart"},
-      delhiTesterAmazon = {url: "2", location: "Delhi", role: "Tester", employer: "amazon"},
-      bangaloreManagerSnapdeal = {url: "3", location: "Bangalore", role: "Manager", employer: "snapdeal"},
-      delhiTesterFlipkart = {url: "4", location: "Delhi", role: "Tester", employer: "flipkart"},
+      mumbaiDeveloperFlipkart = {url: "", location: "Mumbai", role: "Developer", employer: "flipkart"},
+      delhiTesterAmazon = {url: "", location: "Delhi", role: "Tester", employer: "amazon"},
+      bangaloreManagerSnapdeal = {url: "", location: "Bangalore", role: "Manager", employer: "snapdeal"},
+      delhiTesterFlipkart = {url: "", location: "Delhi", role: "Tester", employer: "flipkart"},
       jobs ,
 
       allJobs = [
