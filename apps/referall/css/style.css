@@ -59,6 +59,10 @@ input:focus, {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.text-dirty-yellow{
+  color: rgba(238, 237, 37, 1) !important;
+}
+
 .text-green{
   color: rgb(48,139, 42);
 }
@@ -106,6 +110,10 @@ body{
   width: 450px;
 }
 
+#filter-jobs{
+  border-bottom: 1px solid rgba(234, 208, 62, 0.5);
+}
+
 #jobs-board{
   background-color: transparent;
   padding-top: 1vh;
@@ -115,24 +123,39 @@ body{
   margin: 1vh;
   display: inline-block;
   margin-bottom: 1vh;
-  background-color: white;
-  padding-right: 5px;
-  min-width: 450px;
+  background-color: rgba(255,255,255,0.2);
+  height: 10vh;
 }
 
 .filter-widget > input {
-  min-width: 300px;
   float: left;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+  background-color: transparent;
+  padding: 5px;
+  font-size: 5vh;
 }
 
 .filter-widget > button {
-  min-width: 130px;
   float: right;
-  background-color: white;
-  padding-left: 2vh;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  text-align: center;
+  background-color: rgba(255,255,255,0.5);
+  padding: 5px;
+  font-size: 5vh;
+  width: 10vh;
 }
 
+
+input::-webkit-input-placeholder {
+  color: rgba(208,207,78, 0.47);
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+  color: rgba(208,207,78, 0.47);
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+  color: rgba(208,207,78, 0.47);
+}
+
+input:-ms-input-placeholder {
+  color: rgba(208,207,78, 0.47);
+}
