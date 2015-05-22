@@ -91,7 +91,7 @@ body{
 
 .job-card-heading{
   overflow: hidden;
-  border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+  border-bottom: 1px solid rgba(48, 139, 42, 0.1);
 }
 
 .job-employer{
