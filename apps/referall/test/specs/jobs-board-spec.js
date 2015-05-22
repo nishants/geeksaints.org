@@ -307,4 +307,29 @@
     assert.expect(6);
   });
 
+  QUnit.test("Should search by prefix", function (assert) {
+    var done = assert.async();
+
+    filterByLocation("DeL").then(function () {
+      assert.deepEqual(jobsDisplayed(), delhiJobs , 'should filter by location  prefix.');
+
+      filterByLocation("mUm").then(function () {
+        assert.deepEqual(jobsDisplayed(), mumbaiJobs , 'should filter by location  prefix.recursively');
+
+      clearFilterByLocation().then(function(){
+        filterByEmployer("flip").then(function () {
+          assert.deepEqual(jobsDisplayed(), flipkartJobs, 'should filter by employer  prefix.');
+
+          filterByRole("dev").then(function () {
+            assert.deepEqual(jobsDisplayed(), developerJobs, 'should filter by role  prefix.');
+            done();
+          });
+        })
+      });
+      });
+    });
+
+    assert.expect(4);
+  });
+
 }).call(this);

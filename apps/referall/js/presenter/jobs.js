@@ -2,8 +2,8 @@
   "use-strict"
 
   var
-      equals = function (str1, str2) {
-        return str1.toLowerCase() == str2.toLowerCase();
+      contains = function (string, subsring) {
+        return string.toLowerCase().trim().startsWith(subsring.toLowerCase());
       },
 
       JobsView = function (jobs) {
@@ -53,9 +53,9 @@
           filtered = [];
           jobs.forEach(function (job) {
             var matches =
-                (!filter.location || equals(job.location, filter.location)) &&
-                (!filter.employer || equals(job.employer, filter.employer)) &&
-                (!filter.role || equals(job.role, filter.role));
+                (!filter.location || contains(job.location, filter.location)) &&
+                (!filter.employer || contains(job.employer, filter.employer)) &&
+                (!filter.role || contains(job.role, filter.role));
             if (matches) {
               filtered.push(job);
             }
