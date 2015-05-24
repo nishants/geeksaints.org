@@ -25,6 +25,15 @@
         role: "Fundoo Programmer | Free Stay",
         location: "Bangalore",
         time: "1432069067417"
+      },
+      jobWithNoDate = {
+        url: "abc.com",
+        employer: "AB Corp",
+        role: "Fundoo Programmer | Free Stay",
+        location: "Bangalore"
+      },
+      todayAsDate = function(){
+        return new Date().toString().replace(/.{3} /, "").substring(0,6).trim()
       };
 
   QUnit.module("JobsCard", {
@@ -54,6 +63,26 @@
     });
 
     assert.expect(6);
+  });
+
+  QUnit.test("Should set curent date if date not set on job", function (assert) {
+    var jobCard = new referall.JobCard(jobWithNoDate),
+        done = assert.async();
+
+    jobCard.appendTo(target());
+    var createdJob = displayedJobs(target()).first();
+
+    setTimeout(function(){
+      assert.notOk(createdJob.hasClass("hidden"), "format date to MMM/D");
+      assert.deepEqual(dateIn(createdJob), todayAsDate(), "set date to today, if no date on job");
+      assert.equal(employerIn(createdJob), "AB Corp", "render employer name");
+      assert.equal(headingIn(createdJob), "Fundoo Programmer | Free Stay", "reder role name");
+      assert.equal(locationIn(createdJob), "Bangalore", "render location name");
+
+      done();
+    });
+
+    assert.expect(5);
   });
 
 }).call(this);

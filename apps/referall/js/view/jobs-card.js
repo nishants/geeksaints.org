@@ -14,8 +14,10 @@
         return $e;
       },
 
-      toDateString = function (str) {
-        var date = new Date(parseInt(str));
+      today = new Date();
+
+      dateOf = function (job) {
+        var date = job.time ? new Date(parseInt(job.time)) : today;
         return months[date.getMonth()] + " " + date.getDate();
       },
 
@@ -39,7 +41,7 @@
               ($e).find(".job-employer").html(emp);
             };
 
-        setDate(toDateString(job.time));
+        setDate(dateOf(job));
         setEmployer(job.employer);
         setHeading(job.role);
         setLocation(job.location);
