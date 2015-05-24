@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Referral Lounge</title>
+
+    <meta name="description" content="Make easy money by referring friends.">
+    <meta name="keywords"
+          content="freelancer,online,money,hiring,work form home,work from home,web,design,html,css,html5,development">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/referall.js"></script>
+    <script src="js/presenter/jobs.js"></script>
+    <script src="js/view/jobs-card.js"></script>
+    <script src="js/controller/jobs-board.js"></script>
+</head>
+
+<body id='referall-center' class="centered-text">
+
+<div id="jobs-board" class="full-height">
+
+    <div id="controls" class="shadow bg-rl-blue">
+        <div id="trademark" >
+            <span class="trademark-word-one">Referral</span>
+            <span class="trademark-word-two">Lounge</span>
+        </div>
+
+        <div id="filter-controls">
+            <div class="filter-widget shadow">
+                <input type='text' id="filter-by-location"  placeholder="location" list="locations-options"/>
+                <button class="button large-font font-arial text-grey">X</button>
+            </div>
+
+            <div class="filter-widget shadow">
+                <input  type='text' id="filter-by-employer" placeholder="employer" list="employers-options"/>
+                <button class="button large-font font-arial text-grey">X</button>
+            </div>
+
+            <div class="filter-widget shadow">
+                <input type='text' id="filter-by-role"    placeholder="role"       list="roles-options"/>
+                <button class="button large-font font-arial text-grey">X</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="jobs-list"></div>
+
+    <div id="job-card-prototype" class="job-card text-rl-blue shadow hidden">
+        <div class="job-card-heading font-size7">
+            <span class='job-location pull-left'></span>
+            <span class='job-date pull-right'></span>
+        </div>
+        <div class='job-role'></div>
+        <div class='job-employer font-size7'></div>
+        <div class='job-url hidden'></div>
+    </div>
+
+    <datalist id="locations-options"></datalist>
+    <datalist id="employers-options"></datalist>
+    <datalist id="roles-options">    </datalist>
+</div>
+
+
+
+<script type="text/javascript">
+    var
+            jobsBoard = function () {
+                return $("#jobs-board");
+            },
+            JobsView = referall.JobsView,
+            JobCard = referall.JobCard,
+            JobsBoard = referall.JobsBoard,
+            init = function () {
+                $.get("jobs/usJobs24May2015.json", function (response) {
+                    new JobsBoard(jobsBoard(), new JobsView(response.data), JobCard);
+                })
+            };
+
+    $(document).ready(init);
+</script>
+</body>
+
+</html>
