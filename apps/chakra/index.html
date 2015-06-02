@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>Chakra</title>
 
-    <link rel="stylesheet" href="codemirror.css"/>
-    <script src="codemirror.js"></script>
+    <link rel="stylesheet" href="js/codemirror.css"/>
+    <script src="js/codemirror.js"></script>
     <script src="mode/clike.js"></script>
     <script src="formatting.js"></script>
-    <script src="../../scripts/lib/jquery.js"></script>
 
+    <script src="js/lib/jquery.js"></script>
     <style>
         button {
             margin: 0;
@@ -47,11 +47,13 @@
             background-color: rgb(150, 176, 251);
         }
 
-        #tools-bar {
-            position: absolute;
-            bottom: 5vh;
+        .floating-tools-bar {
             right: 3vh;
-            z-index: 1;
+            z-index: 5;
+            position: absolute;
+        }
+        #tools-bar {
+            bottom: 5vh;
         }
 
         #run-button {
@@ -79,16 +81,27 @@
             height: 100vh;
             width: 100vw;
         }
+        #console{
+            min-width: 300px;
+            top: 15vh;
+            height: 50vh;
+            overflow: scroll;
+            background-color: whitesmoke;
+        }
 
     </style>
 
 </head>
 <body>
 <div id="ide" class="full-screen">
-    <div id="tabs-bar">
+    <div id="console" class="floating-tools-bar">
+        out: our ocnolse output.
+    </div>
+
+    <div id="tabs-bar" >
         <button id="tab1" class="tab-name">Hello.java</button>
     </div>
-    <div id="tools-bar">
+    <div id="tools-bar" class="floating-tools-bar">
         <button id="run-button">Run</button>
         <button id="compile-button">Compile</button>
     </div>
@@ -103,20 +116,11 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-public class RuntimeLib {
+public class HelloWorld {
   public static void main(String... args) throws IOException {
-    ClassLoader classLoader = ToolProvider.getSystemToolClassLoader();
-    Enumeration &lt;URL&gt; resources = classLoader.getResources("");
-        System.out.println(asList(resources));
-    }
+    System.out.println("hello");
+}
 
-    private static &lt;T&gt; List&lt;T&gt; asList(Enumeration&lt;T&gt; resources) {
-        List&lt;T&gt; result = new ArrayList&lt;T&gt;();
-        while (resources.hasMoreElements()) {
-            result.add(resources.nextElement());
-        }
-        return result;
-    }
 }
 
                 </textarea>
@@ -133,40 +137,43 @@ public class RuntimeLib {
             tabSize: 2,
             mode: "text/x-java"
         });
-                window.editor = editor;
+        window.editor = editor;
 
         var showConsole = function (response) {
-            alert(JSON.toString(response))
+            $("#console").html("out: " + response.content.console.join("<br>"));
         };
 
         var showError = function (response) {
-            alert(JSON.toString(response))
+            console.log(JSON.stringify(response))
         };
 
         var compileAndRun = function (code, success, failure) {
+            var javaFilesWith =function(code){
+                var response = {
+                  content: {
+                      mainClass: "HelloWorld",
+                      javaFiles: [{className: "HelloWorld", javaCode: code}]
+                  }
+                };
+                return JSON.stringify(response);
+            };
+
             $.ajax({
                 type: "POST",
-                dataType: "json",
-                url: "https://boiling-scrubland-7787.herokuapp.com/runner/main",
-                data: {
-                content: {
-                    mainClass: "HelloWorld",
-                    javaFiles: [{className: "HelloWorld", javaCode: code}]
-                }
-                },
+                contentType: "application/json",
+                url: "http://boiling-scrubland-7787.herokuapp.com/runner/main",
+                data: javaFilesWith(code),
                 success: success,
                 error: failure
             });
-            alert(code);
         };
 
 
         $("#run-button").click(function () {
-            compileAndRun(editor.getValue(";"), showConsole, showError)
+            compileAndRun(editor.getValue().replace("\n", ""), showConsole, showError)
         });
-            }
-    )
-    ;
+
+    });
 
 
 </script>
